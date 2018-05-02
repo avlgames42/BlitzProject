@@ -1,0 +1,23 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Collections;
+
+public class GameManager : MonoBehaviour {
+
+    // variaveis para controle de salas
+
+    // Use this for initialization
+    void Start () {
+               
+		
+	}
+	
+	// Update is called once per frame
+	void Update () {
+		
+	}
+
+ 
+
+}
