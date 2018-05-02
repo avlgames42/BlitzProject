@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour {
 
     Animator anim;
     Vector2 movement;
-    public float speed;
 
+    public GameObject lifeBar;
     public GameObject initialMap;
     public GameObject currentMap;
 
@@ -17,10 +18,21 @@ public class Player : MonoBehaviour {
 
     public GameObject shoot;
 
+    //atributos
+    float hp = 0;
+    float hpMax = 10;
+    public float speed;
+    float shield = 0;
+    float shieldMax = 0;
+
+    //controle
+    bool isAttacking = false;
+
 
     private void Awake()
     {
         //Assert.IsNotNull(initialMap);
+        aim.GetComponent<SpriteRenderer>().enabled = false;
     }
 
     // Use this for initialization
@@ -29,10 +41,17 @@ public class Player : MonoBehaviour {
 
         //passa o mapa inicial para a referencia da camera
         Camera.main.GetComponent<MainCamera>().setBounds(initialMap);
+
+        hp = hpMax;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+
+        lifeBar.GetComponent<Image>().fillAmount = hp / hpMax;
+
+        if (hp > hpMax) hp = hpMax;
+        if (hp < 0) hp = 0;
 
         aimDirection = new Vector3(Input.GetAxisRaw("HorizontalDireito"), Input.GetAxisRaw("VerticalDireito"));
         aim.transform.localPosition = aimDirection;
@@ -42,7 +61,7 @@ public class Player : MonoBehaviour {
 
         if (Input.GetAxisRaw("HorizontalDireito") != 0 || Input.GetAxisRaw("VerticalDireito") != 0)
         {
-            fire();
+           if(!isAttacking) fire();
         }
 
 
@@ -72,6 +91,19 @@ public class Player : MonoBehaviour {
 
     void fire()
     {
+        StartCoroutine(attackDelay());
         Instantiate(shoot, transform.position, transform.rotation);
+    }
+
+    IEnumerator attackDelay()
+    {
+        isAttacking = true;
+        yield return new WaitForSeconds(shoot.GetComponent<Shoot>().delay);
+        isAttacking = false;
+    }
+
+    public void takeDamage(float damage)
+    {
+        hp -= damage;
     }
 }

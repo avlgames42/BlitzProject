@@ -217,6 +217,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Destructibles.cs" />
     <Compile Include="Assets\Scripts\Enemy.cs" />
     <Compile Include="Assets\Scripts\Energy.cs" />
     <Compile Include="Assets\Scripts\FixDepth.cs" />
@@ -264,6 +265,7 @@
     <None Include="Assets\Tiled2Unity\Imported\mapa_3.tiled2unity.xml" />
     <None Include="Assets\Tiled2Unity\Imported\mapa_4.tiled2unity.xml" />
     <None Include="Assets\Tiled2Unity\Imported\mapa_5.tiled2unity.xml" />
+    <None Include="Assets\Tiled2Unity\Imported\mapas_1.tiled2unity.xml" />
     <None Include="Assets\Tiled2Unity\Imported\maps_hall.tiled2unity.xml" />
     <None Include="Assets\Tiled2Unity\Imported\maps_nowayout_left.tiled2unity.xml" />
     <None Include="Assets\Tiled2Unity\Imported\maps_nowayout_right.tiled2unity.xml" />

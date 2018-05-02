@@ -8,6 +8,9 @@ public class Shoot : MonoBehaviour {
     Vector3 direction;
     public float speed;
 
+    public float damage = 1;
+    public float delay = .3f;
+
 	// Use this for initialization
 	void Start () {
         target = GameObject.Find("Aim").transform;
@@ -24,5 +27,15 @@ public class Shoot : MonoBehaviour {
     private void OnBecameInvisible()
     {
         Destroy(this.gameObject);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.tag == "Enemy")
+        {
+            collision.SendMessage("takeDamage", damage);
+        }
+
+        if(collision.tag != "Player") Destroy(this.gameObject);
     }
 }

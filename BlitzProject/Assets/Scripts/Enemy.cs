@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Enemy: MonoBehaviour
 {
@@ -14,6 +15,9 @@ public class Enemy: MonoBehaviour
     GameObject player;
 
     public float speed;
+    float hp = 0;
+    float hpMax = 4;
+    float attackDamage = 1;
     public float visionRadius;
     public float AttackRadius;
 
@@ -30,6 +34,8 @@ public class Enemy: MonoBehaviour
 
     int aux;
 
+    public GameObject lifeBar;
+
     // Use this for initialization
     void Start()
     {
@@ -40,6 +46,8 @@ public class Enemy: MonoBehaviour
 
         target = initialPosition;
         aux = Mathf.RoundToInt((Random.Range(1, 4) * 100) / 100);
+
+        hp = hpMax;
     }
 
     // Update is called once per frame
@@ -47,6 +55,15 @@ public class Enemy: MonoBehaviour
     {
         if(isActive)
         {
+            lifeBar.GetComponent<Image>().fillAmount = hp / hpMax;
+
+            if (hp > hpMax) hp = hpMax;
+            if (hp < 0)
+            {
+                hp = 0;
+                die();
+            }
+
             raycastMaker();
             chooseAction();
         }
@@ -156,6 +173,16 @@ public class Enemy: MonoBehaviour
 
     }
 
+    public void takeDamage(float damage)
+    {
+        hp -= damage;
+    }
+
+    void die()
+    {
+        Destroy(this.gameObject);
+    }
+
     public void activeColliderAttack()
     {
         attackCollider.enabled = true;
@@ -179,7 +206,7 @@ public class Enemy: MonoBehaviour
     {
         if(collision.tag == "Player")
         {
-            print("acertou");
+            collision.SendMessage("takeDamage", attackDamage);
         }
     }
 
@@ -199,6 +226,6 @@ public class Enemy: MonoBehaviour
 
     private void OnBecameInvisible()
     {
-        isActive = false;
+        //isActive = false;
     }
 }

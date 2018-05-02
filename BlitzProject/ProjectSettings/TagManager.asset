@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Wall
+  - Attack
+  - Enemy
+  - Destructibles
   layers:
   - Default
   - TransparentFX
