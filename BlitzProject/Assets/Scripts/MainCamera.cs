@@ -47,10 +47,10 @@ public class MainCamera : MonoBehaviour {
 
         //calcula os limites da camera, nos dois pontos canto superior esquerdo e canto inferiror direito
         
-        topLeftX = map.transform.position.x + (2*cameraSize) + 0.7f; // +1
+        topLeftX = map.transform.position.x + (1.77777f*cameraSize); // +1
         //topLeftX = map.transform.position.x + cameraSize; // +1
         topLeftY = map.transform.position.y - cameraSize; //-1
-        downRightX = map.transform.position.x + (config.NumTilesWide) - (2*cameraSize) - 0.7f;//-1
+        downRightX = map.transform.position.x + (config.NumTilesWide) - (1.77777f*cameraSize);//-1
         //downRightX = map.transform.position.x + (config.NumTilesWide) - cameraSize;//-1
         downRightY = map.transform.position.y - (config.NumTilesHigh) + cameraSize;//-1
 

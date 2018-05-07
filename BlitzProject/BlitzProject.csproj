@@ -227,6 +227,7 @@
     <Compile Include="Assets\Scripts\MapConfig.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\Scripts\Shoot.cs" />
+    <Compile Include="Assets\Scripts\Spot.cs" />
     <Compile Include="Assets\Scripts\Warp.cs" />
     <Compile Include="Assets\Tiled2Unity\Scripts\Runtime\CircleObject.cs" />
     <Compile Include="Assets\Tiled2Unity\Scripts\Runtime\GameObjectExtensions.cs" />
@@ -266,6 +267,7 @@
     <None Include="Assets\Tiled2Unity\Imported\mapa_4.tiled2unity.xml" />
     <None Include="Assets\Tiled2Unity\Imported\mapa_5.tiled2unity.xml" />
     <None Include="Assets\Tiled2Unity\Imported\mapas_1.tiled2unity.xml" />
+    <None Include="Assets\Tiled2Unity\Imported\mapas_2.tiled2unity.xml" />
     <None Include="Assets\Tiled2Unity\Imported\maps_hall.tiled2unity.xml" />
     <None Include="Assets\Tiled2Unity\Imported\maps_nowayout_left.tiled2unity.xml" />
     <None Include="Assets\Tiled2Unity\Imported\maps_nowayout_right.tiled2unity.xml" />

@@ -30,9 +30,11 @@ public class Enemy: MonoBehaviour
     public float attackDelay;
     bool isAttack = false;
     bool isActive = false;
-    bool playerHasSpoted = false;
 
-    int aux;
+    string state = "";
+
+    //quantidade de energia que dropa
+    int xp;
 
     public GameObject lifeBar;
 
@@ -43,10 +45,6 @@ public class Enemy: MonoBehaviour
         anim = GetComponent<Animator>();
         initialPosition = transform.position;
         attackCollider.enabled = false;
-
-        target = initialPosition;
-        aux = Mathf.RoundToInt((Random.Range(1, 4) * 100) / 100);
-
         hp = hpMax;
     }
 
@@ -58,14 +56,50 @@ public class Enemy: MonoBehaviour
             lifeBar.GetComponent<Image>().fillAmount = hp / hpMax;
 
             if (hp > hpMax) hp = hpMax;
-            if (hp < 0)
+            if (hp <= 0)
             {
                 hp = 0;
                 die();
             }
 
-            raycastMaker();
-            chooseAction();
+            //define target com a posicao inicial 
+            target = initialPosition;
+
+            //raycast em direcao ao jogador, para verificar se ele se encontra no raio de visao do inimigo
+            hit = Physics2D.Raycast(transform.position, player.transform.position - transform.position, visionRadius, 1 << LayerMask.NameToLayer("Default"));
+
+            //forward = transform.TransformDirection(player.transform.position - transform.position);
+            Debug.DrawRay(transform.position, (player.transform.position - transform.position), Color.red);
+
+            //verifica se ocorreu colisao do raycast, se o collider tiver tag player muda o target para o player
+            if (hit.collider != null)
+            {
+                if (hit.collider.tag == "Player")
+                {
+                    if (distance < visionRadius)
+                    {
+                        target = player.transform.position;
+                    }
+                }
+            }
+
+            //calcula a distancia entre os objetos para determinar o comportamento
+            distance = Vector3.Distance(target, transform.position);
+
+            //calcula a direcao para tratar animacao 
+            direction = (target - transform.position).normalized;
+
+            // se a distancia for menor que a de ataque , ataca o target
+            if (target != initialPosition && distance < AttackRadius)
+            {
+                if (!isAttack) attack();
+            }
+            else
+            {
+                if (!isAttack) walk();
+            }
+
+
         }
 
     }
@@ -77,43 +111,13 @@ public class Enemy: MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, AttackRadius);
     }
 
-    void raycastMaker()
-    {
-        //define target com a posicao inicial 
-        //target = initialPosition;
-
-        //raycast em direcao ao jogador, para verificar se ele se encontra no raio de visao do inimigo
-        hit = Physics2D.Raycast(transform.position, player.transform.position - transform.position, visionRadius, 1 << LayerMask.NameToLayer("Default"));
-
-        //forward = transform.TransformDirection(player.transform.position - transform.position);
-        Debug.DrawRay(transform.position, (player.transform.position - transform.position), Color.red);
-
-        //verifica se ocorreu colisao do raycast, se o collider tiver tag player muda o target para o player
-        if (hit.collider != null)
-        {
-            if (hit.collider.tag == "Player")
-            {
-                if(distance < visionRadius)
-                {
-                    target = player.transform.position;
-                }
-            }
-        }
-
-        //calcula a distancia entre os objetos para determinar o comportamento
-        distance = Vector3.Distance(target, transform.position);
-
-        //calcula a direcao para tratar animacao 
-        direction = (target - transform.position).normalized;
-    }
-
     void attack()
     {
         //flip o sprite para esquerda para ajusta a animaçao
         if (direction.x < 0)
         {
-           transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
-           attackCollider.offset = new Vector2((direction.x*-1), direction.y);
+            transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
+            attackCollider.offset = new Vector2((direction.x * -1), direction.y);
         }
         else
         {
@@ -128,19 +132,6 @@ public class Enemy: MonoBehaviour
         anim.SetTrigger("attack");
         StartCoroutine(delay());
 
-    }
-
-    void chooseAction()
-    {
-        // se a distancia for menor que a de ataque , ataca o target
-        if (target != initialPosition && distance < AttackRadius)
-        {
-            if (!isAttack) attack();
-        }
-        else
-        {
-            if (!isAttack) walk();
-        }
     }
 
     void walk()
@@ -180,6 +171,7 @@ public class Enemy: MonoBehaviour
 
     void die()
     {
+        player.GetComponent<Player>().currentMap.GetComponent<MapConfig>().defeatEnemy();
         Destroy(this.gameObject);
     }
 

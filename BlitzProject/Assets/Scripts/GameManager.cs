@@ -5,6 +5,8 @@ using UnityEngine.Collections;
 
 public class GameManager : MonoBehaviour {
 
+    public List<GameObject> listEnemysLv1 = new List<GameObject>();
+
     // variaveis para controle de salas
 
     // Use this for initialization
