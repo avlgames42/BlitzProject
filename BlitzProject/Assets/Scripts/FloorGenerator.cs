@@ -17,7 +17,7 @@ public class FloorGenerator : MonoBehaviour {
     public List<GameObject> upNoWay = new List<GameObject>();
     public List<GameObject> downNoWay = new List<GameObject>();
 
-    List<GameObject> floor = new List<GameObject>();
+    public List<GameObject> floor = new List<GameObject>();
 
     int aux;
     public int numberOfRooms;
@@ -31,15 +31,21 @@ public class FloorGenerator : MonoBehaviour {
     GameObject obj;
 
     GameObject targetWarps;
+    int deadCicle = 4;
 
     private void Awake()
     {
         aux = Mathf.RoundToInt(Random.Range(0, downDoor.Count));
+        print(aux.ToString());
         currentMap = downDoor[aux];
+        
         currentMap.GetComponent<MapConfig>().peek = true;
 
+        currentMap.GetComponent<MapConfig>().enemysLeft =
+                            Mathf.RoundToInt(Random.Range(currentMap.GetComponent<MapConfig>().enemySpot.Count / 2,
+                            currentMap.GetComponent<MapConfig>().enemySpot.Count - 1));
         floor.Add(currentMap);
-
+        print(floor[0].name);
         makeRoom(currentMap);
 
         
@@ -66,7 +72,7 @@ public class FloorGenerator : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        
+
 	}
 	
 	// Update is called once per frame
@@ -100,7 +106,7 @@ public class FloorGenerator : MonoBehaviour {
                   
                     if (targetMap.GetComponent<MapConfig>().peek)
                     {
-                        if(nTimes < 4)
+                        if(nTimes < deadCicle)
                         {
                             nTimes++;
                             goto Find_1;
@@ -119,6 +125,9 @@ public class FloorGenerator : MonoBehaviour {
 
                         // inseri o mapa selecionado na lista
                         floor.Add(targetMap);
+                        targetMap.GetComponent<MapConfig>().enemysLeft =
+                            Mathf.RoundToInt(Random.Range(targetMap.GetComponent<MapConfig>().enemySpot.Count / 2,
+                            targetMap.GetComponent<MapConfig>().enemySpot.Count - 1));
 
                         //interligar os warps
                         //pego objeto warps detro do targetmap depois pego o warp oposto
@@ -143,7 +152,7 @@ public class FloorGenerator : MonoBehaviour {
 
                    if (targetMap.GetComponent<MapConfig>().peek)
                     {
-                        if (nTimes < 4)
+                        if (nTimes < deadCicle)
                         {
                             nTimes++;
                             goto Find_2;
@@ -162,6 +171,9 @@ public class FloorGenerator : MonoBehaviour {
                         // inseri o mapa selecionado na fila
                         //currentFloor.Enqueue(targetMap);
                         floor.Add(targetMap);
+                        targetMap.GetComponent<MapConfig>().enemysLeft =
+                            Mathf.RoundToInt(Random.Range(targetMap.GetComponent<MapConfig>().enemySpot.Count / 2,
+                            targetMap.GetComponent<MapConfig>().enemySpot.Count - 1));
 
 
                         //interligar os warps
@@ -191,7 +203,7 @@ public class FloorGenerator : MonoBehaviour {
                     
                     if (targetMap.GetComponent<MapConfig>().peek)
                     {
-                        if (nTimes < 4)
+                        if (nTimes < deadCicle)
                         {
                             nTimes++;
                             goto Find_3;
@@ -211,6 +223,9 @@ public class FloorGenerator : MonoBehaviour {
                         // inseri o mapa selecionado na fila
                         //currentFloor.Enqueue(targetMap);
                         floor.Add(targetMap);
+                        targetMap.GetComponent<MapConfig>().enemysLeft =
+                            Mathf.RoundToInt(Random.Range(targetMap.GetComponent<MapConfig>().enemySpot.Count / 2,
+                            targetMap.GetComponent<MapConfig>().enemySpot.Count - 1));
 
                         //interligar os warps
                         //pego objeto warps detro do targetmap depois pego o warp oposto
@@ -235,7 +250,7 @@ public class FloorGenerator : MonoBehaviour {
                     
                     if (targetMap.GetComponent<MapConfig>().peek)
                     {
-                        if (nTimes < 4)
+                        if (nTimes < deadCicle)
                         {
                             nTimes++;
                             goto Find_4;
@@ -255,6 +270,9 @@ public class FloorGenerator : MonoBehaviour {
                         // inseri o mapa selecionado na fila
                         //currentFloor.Enqueue(targetMap);
                         floor.Add(targetMap);
+                        targetMap.GetComponent<MapConfig>().enemysLeft =
+                            Mathf.RoundToInt(Random.Range(targetMap.GetComponent<MapConfig>().enemySpot.Count / 2,
+                            targetMap.GetComponent<MapConfig>().enemySpot.Count - 1));
 
                         //interligar os warps
                         //pego objeto warps detro do targetmap depois pego o warp oposto

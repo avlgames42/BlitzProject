@@ -312,6 +312,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1807320426335206
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4703327063762082}
+  m_Layer: 0
+  m_Name: doors
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1876037200843626
 GameObject:
   m_ObjectHideFlags: 1
@@ -420,8 +435,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1781310291685058}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -59.95496, y: 10.158549, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -52.88022, y: -46.34477, z: -0.0390625}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4665385399918482}
@@ -430,6 +445,7 @@ Transform:
   - {fileID: 4094057445320222}
   - {fileID: 4482442202230482}
   - {fileID: 4661682419170802}
+  - {fileID: 4703327063762082}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -584,6 +600,19 @@ Transform:
   - {fileID: 4819041963508360}
   m_Father: {fileID: 4200508359114046}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4703327063762082
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1807320426335206}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4200508359114046}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4743171733631470
 Transform:
@@ -919,6 +948,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   peek: 0
+  clear: 0
+  active: 0
+  populated: 0
+  small: 1
+  enemysLeft: 0
+  doors: {fileID: 1807320426335206}
+  enemySpot: []
 --- !u!114 &114077980715842894
 MonoBehaviour:
   m_ObjectHideFlags: 1

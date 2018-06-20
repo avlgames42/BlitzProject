@@ -8,11 +8,14 @@ public class MapConfig : MonoBehaviour {
     public bool clear = false;
     public bool active = false;
     public bool populated = false;
+    public bool small;
 
     //public List<GameObject> listDoors = new List<GameObject>();
     public int enemysLeft;
 
     public GameObject doors;
+    //public GameObject chestSpot;
+    //public GameObject chest;
 
     public List<GameObject> enemySpot = new List<GameObject>();
     GameObject gm;
@@ -44,6 +47,7 @@ public class MapConfig : MonoBehaviour {
         if (clear)
         {
             doors.gameObject.SetActive(false);
+            //Instantiate(chest, chestSpot.transform.position, chestSpot.transform.rotation);
         }
 
         if (enemysLeft <= 0)
@@ -76,10 +80,17 @@ public class MapConfig : MonoBehaviour {
             }
             //inseri valor no vetor
             check[j] = aux;
-            print(aux.ToString());
             //sorteia inimigo
             aux = Mathf.RoundToInt((Random.Range(0, gm.GetComponent<GameManager>().listEnemysLv1.Count) * 100) / 100);
-
+            /*int num = Mathf.RoundToInt(Random.Range(0, 9));
+            if(num <= 4)
+            {
+                gm.GetComponent<GameManager>().listEnemysLv1[aux].GetComponent<Enemy>().horizontal = true;
+            }
+            else
+            {
+                gm.GetComponent<GameManager>().listEnemysLv1[aux].GetComponent<Enemy>().horizontal = false;
+            }*/
             Instantiate(gm.GetComponent<GameManager>().listEnemysLv1[aux], enemySpot[check[j]].transform.position, enemySpot[check[j]].transform.rotation);
 
         }

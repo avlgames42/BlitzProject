@@ -75,7 +75,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1791868113390868}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -81.66075, y: 43.76, z: -0.14453125}
+  m_LocalPosition: {x: -239.76147, y: 347.81238, z: -0.14453125}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224582120675997726}
@@ -160,11 +160,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb98a01d3ea67374ca30ed5d59c4a460, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
-  visionRadius: 6
+  speed: 3
+  hpMax: 3
+  attackDamage: 1
+  visionRadius: 8
   AttackRadius: 1.2
   attackCollider: {fileID: 58147832788358194}
+  horizontal: 0
+  ranged: 0
+  berserk: 0
   attackDelay: 1.5
+  xp: 4
+  energy: {fileID: 1958113128598900, guid: 37a63c5e36a9b7c4dae874cffb461b90, type: 2}
   lifeBar: {fileID: 1963560732697514}
 --- !u!114 &114131199158435166
 MonoBehaviour:
@@ -309,7 +316,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: -519583749
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!224 &224045933551410354

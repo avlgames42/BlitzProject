@@ -53,7 +53,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   listEnemysLv1:
   - {fileID: 1791868113390868, guid: 0622c8dfbd897ba46ac113008b3ceb75, type: 2}
-  - {fileID: 1791868113390868, guid: 0622c8dfbd897ba46ac113008b3ceb75, type: 2}
-  - {fileID: 1791868113390868, guid: 0622c8dfbd897ba46ac113008b3ceb75, type: 2}
-  - {fileID: 1791868113390868, guid: 0622c8dfbd897ba46ac113008b3ceb75, type: 2}
-  - {fileID: 1791868113390868, guid: 0622c8dfbd897ba46ac113008b3ceb75, type: 2}
+  - {fileID: 1930692764551580, guid: 59811299474cc0844a9ebc257338d724, type: 2}
+  - {fileID: 1323152262669372, guid: 7b028d3eff0cb5b479865c402b130fb5, type: 2}
+  gameOver: {fileID: 0}
+  win: {fileID: 0}
+  gameState: play
+  energy: {fileID: 1958113128598900, guid: 37a63c5e36a9b7c4dae874cffb461b90, type: 2}

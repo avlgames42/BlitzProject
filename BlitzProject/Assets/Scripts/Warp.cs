@@ -17,6 +17,7 @@ public class Warp : MonoBehaviour {
     FloorGenerator scriptGenerator;
 
     GameObject gm;
+    GameObject h6;
 
     //usados para setup da dungeon
     public bool isActive;
@@ -32,7 +33,8 @@ public class Warp : MonoBehaviour {
         GameObject obj = GameObject.Find("FloorGeneratorObj");
         scriptGenerator = obj.GetComponent<FloorGenerator>();
 
-        gm = GameObject.Find("GameManagerOBJ");
+        gm = GameObject.Find("Manager");
+        h6 = GameObject.Find("H6");
     }
 	
 	// Update is called once per frame
@@ -66,6 +68,7 @@ public class Warp : MonoBehaviour {
                 yield return new WaitForSeconds(fadeTime);
 
                 collision.transform.position = target.transform.GetChild(0).transform.position;
+                h6.transform.position = collision.transform.position;
                 Camera.main.GetComponent<MainCamera>().setBounds(targetMap);
                 collision.GetComponent<Player>().currentMap = targetMap;
 
@@ -89,6 +92,7 @@ public class Warp : MonoBehaviour {
                 }
 
                 collision.transform.position = target.transform.GetChild(0).transform.position;
+                h6.transform.position = collision.transform.position;
                 Camera.main.GetComponent<MainCamera>().setBounds(targetMap);
                 collision.GetComponent<Player>().currentMap = targetMap;
 
@@ -98,6 +102,7 @@ public class Warp : MonoBehaviour {
 
             }
            
+
         }
     }
 
@@ -137,4 +142,6 @@ public class Warp : MonoBehaviour {
     {
         isFadeIn = false;
     }
+
+    
 }

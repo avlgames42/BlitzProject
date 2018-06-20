@@ -11,13 +11,16 @@ public class Enemy: MonoBehaviour
     Vector3 direction;
 
     RaycastHit2D hit;
+    RaycastHit2D ray;
 
     GameObject player;
 
     public float speed;
+    float step = 3;
+    float speedRef;
     float hp = 0;
-    float hpMax = 4;
-    float attackDamage = 1;
+    public float hpMax;
+    public float attackDamage;
     public float visionRadius;
     public float AttackRadius;
 
@@ -26,17 +29,25 @@ public class Enemy: MonoBehaviour
     Animator anim;
 
     public CircleCollider2D attackCollider;
+    public bool horizontal;
+    public bool ranged;
+    public bool berserk;
+    bool dead = false;
 
     public float attackDelay;
     bool isAttack = false;
     bool isActive = false;
+    bool ready = false;
 
-    string state = "";
 
     //quantidade de energia que dropa
-    int xp;
+    public int xp;
+    public GameObject energy;
 
     public GameObject lifeBar;
+
+    GameObject gm;
+
 
     // Use this for initialization
     void Start()
@@ -46,61 +57,96 @@ public class Enemy: MonoBehaviour
         initialPosition = transform.position;
         attackCollider.enabled = false;
         hp = hpMax;
+        speedRef = speed;
+        gm = GameObject.Find("Manager");
+
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(isActive)
+        if (gm.GetComponent<GameManager>().gameState.Equals("play"))
         {
-            lifeBar.GetComponent<Image>().fillAmount = hp / hpMax;
-
-            if (hp > hpMax) hp = hpMax;
-            if (hp <= 0)
+            if (isActive && ready)
             {
-                hp = 0;
-                die();
-            }
+                lifeBar.GetComponent<Image>().fillAmount = hp / hpMax;
 
-            //define target com a posicao inicial 
-            target = initialPosition;
-
-            //raycast em direcao ao jogador, para verificar se ele se encontra no raio de visao do inimigo
-            hit = Physics2D.Raycast(transform.position, player.transform.position - transform.position, visionRadius, 1 << LayerMask.NameToLayer("Default"));
-
-            //forward = transform.TransformDirection(player.transform.position - transform.position);
-            Debug.DrawRay(transform.position, (player.transform.position - transform.position), Color.red);
-
-            //verifica se ocorreu colisao do raycast, se o collider tiver tag player muda o target para o player
-            if (hit.collider != null)
-            {
-                if (hit.collider.tag == "Player")
+                if (hp > hpMax) hp = hpMax;
+                if (hp <= 0 && !dead)
                 {
-                    if (distance < visionRadius)
+                    dead = true;
+                    die();
+                }
+
+
+                //define target com a posicao inicial 
+                target = initialPosition;
+
+                /*
+                if(horizontal)
+                {
+                    target = new Vector3(transform.position.x + step, transform.position.y, transform.position.z);
+                }
+                else
+                {
+                    target = new Vector3(transform.position.x, transform.position.y + step, transform.position.z);
+                }
+                */
+
+                //raycast em direcao ao jogador, para verificar se ele se encontra no raio de visao do inimigo
+                hit = Physics2D.Raycast(transform.position, player.transform.position - transform.position, visionRadius, 1 << LayerMask.NameToLayer("Default"));
+
+                //forward = transform.TransformDirection(player.transform.position - transform.position);
+                Debug.DrawRay(transform.position, (player.transform.position - transform.position), Color.red);
+
+                //verifica se ocorreu colisao do raycast, se o collider tiver tag player muda o target para o player
+                if (hit.collider != null)
+                {
+                    if (hit.collider.tag == "Player")
                     {
-                        target = player.transform.position;
+                        if (distance < visionRadius)
+                        {
+                            target = player.transform.position;
+                        }
                     }
                 }
+
+                
+                //calcula a distancia entre os objetos para determinar o comportamento
+                distance = Vector3.Distance(target, transform.position);
+
+                //calcula a direcao para tratar animacao 
+                direction = (target - transform.position).normalized;
+
+                /*
+                Debug.DrawRay(transform.position, target, Color.blue,step);
+                ray = Physics2D.Raycast(transform.position, target - transform.position, step, 1 << LayerMask.NameToLayer("Default"));
+                if(ray.collider != null)
+                {
+                    if(ray.collider.tag != "Player")
+                    {
+                        step *= -1;
+                    }
+                }
+                */
+
+                // se a distancia for menor que a de ataque , ataca o target
+                if (target != initialPosition && distance < AttackRadius)
+                {
+                    if (!isAttack) attack();
+                }
+                else
+                {
+                    if (!isAttack)
+                    {
+                        walk();
+                    }
+
+                }
             }
-
-            //calcula a distancia entre os objetos para determinar o comportamento
-            distance = Vector3.Distance(target, transform.position);
-
-            //calcula a direcao para tratar animacao 
-            direction = (target - transform.position).normalized;
-
-            // se a distancia for menor que a de ataque , ataca o target
-            if (target != initialPosition && distance < AttackRadius)
-            {
-                if (!isAttack) attack();
-            }
-            else
-            {
-                if (!isAttack) walk();
-            }
-
-
         }
+            
 
     }
 
@@ -159,9 +205,7 @@ public class Enemy: MonoBehaviour
         {
             transform.position = initialPosition;
             anim.SetBool("walking", false);
-
         }
-
     }
 
     public void takeDamage(float damage)
@@ -171,8 +215,7 @@ public class Enemy: MonoBehaviour
 
     void die()
     {
-        player.GetComponent<Player>().currentMap.GetComponent<MapConfig>().defeatEnemy();
-        Destroy(this.gameObject);
+        anim.SetTrigger("die");     
     }
 
     public void activeColliderAttack()
@@ -186,20 +229,61 @@ public class Enemy: MonoBehaviour
 
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if(collision.gameObject.tag != "Player")
-        {
-            
-        }
-    }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.tag == "Player")
         {
-            collision.SendMessage("takeDamage", attackDamage);
+            if(collision.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsTag("hit"))
+            {
+
+            }
+            else
+            {
+                collision.SendMessage("takeDamage", attackDamage);
+                collision.GetComponent<Animator>().SetTrigger("hit");
+            }
+            
         }
+        else if (collision.tag == "Attack")
+        {
+            if(anim.GetCurrentAnimatorStateInfo(0).IsTag("Hit") || anim.GetCurrentAnimatorStateInfo(0).IsTag("dead"))
+            {
+
+            }
+            else
+            {
+                //flip o sprite para esquerda para ajusta a animaçao
+                if (direction.x < 0)
+                {
+                    transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
+                }
+                else
+                {
+                    transform.localScale = new Vector3(1, transform.localScale.y, transform.localScale.z);
+                }
+
+                if(berserk)
+                {
+                    
+                }
+                else
+                {
+                    speed = 0;
+                }
+                anim.SetTrigger("hit");
+                collision.GetComponent<Shoot>().direction = new Vector3(0, 0, 0);
+                takeDamage(collision.GetComponent<Shoot>().damage);
+                collision.GetComponent<Animator>().SetTrigger("collision");
+            }
+            
+        }
+    }
+
+    void resetSpeed()
+    {
+        speed = speedRef;
     }
 
 
@@ -214,10 +298,28 @@ public class Enemy: MonoBehaviour
     private void OnBecameVisible()
     {
         isActive = true;
+        StartCoroutine(isReady());
     }
 
     private void OnBecameInvisible()
     {
         //isActive = false;
+    }
+
+    void destroyEnemy()
+    {
+        player.GetComponent<Player>().currentMap.GetComponent<MapConfig>().defeatEnemy();
+        GameManager.enemysTotal--;
+        for (int i = 0; i < xp; i++)
+        {
+            Instantiate(energy, transform.position, transform.rotation);
+        }
+        Destroy(this.gameObject);
+    }
+
+    public IEnumerator isReady()
+    {
+        yield return new WaitForSeconds(.5f);
+        ready = true;
     }
 }

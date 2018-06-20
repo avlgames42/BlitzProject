@@ -5,10 +5,16 @@ using UnityEngine;
 public class Destructibles : MonoBehaviour {
 
     Animator anim;
+    public GameObject xp;
+    public GameObject potion;
+    public bool box;
+    int aux;
 
+    GameObject gm;
 	// Use this for initialization
 	void Start () {
         anim = GetComponent<Animator>();
+        gm = GameObject.Find("Manager");
 	}
 	
 	// Update is called once per frame
@@ -16,8 +22,33 @@ public class Destructibles : MonoBehaviour {
 
         if (anim.GetCurrentAnimatorStateInfo(0).IsTag("end"))
         {
-            GetComponent<CircleCollider2D>().enabled = false;
-            GetComponent<SpriteRenderer>().sortingLayerName = "Door";
+            if (!box)
+            {
+                GetComponent<CircleCollider2D>().enabled = false;
+                GetComponent<SpriteRenderer>().sortingLayerName = "Door";
+            }
+            else
+            {
+                GetComponent<BoxCollider2D>().enabled = false;
+                GetComponent<SpriteRenderer>().sortingLayerName = "Door";
+            }
+
+            aux = Mathf.RoundToInt(Random.Range(1, 10));
+            switch(aux)
+            {
+                case 1:
+                case 2:
+                    //drop potion
+                    print("poçao");
+                    break;
+                case 3:
+                case 4:
+                    Instantiate(gm.GetComponent<GameManager>().energy, transform.position, transform.rotation);
+                   // Instantiate(xp, transform.position, transform.rotation);
+                    break;
+            }
+
+            GetComponent<Destructibles>().enabled = false;
         }
 
 

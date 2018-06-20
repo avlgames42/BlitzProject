@@ -87,6 +87,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d3c5d0c15adba5489d8ba2295b8b19e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  xp: {fileID: 1958113128598900, guid: 37a63c5e36a9b7c4dae874cffb461b90, type: 2}
+  potion: {fileID: 0}
+  box: 0
 --- !u!114 &114941587254412502
 MonoBehaviour:
   m_ObjectHideFlags: 1

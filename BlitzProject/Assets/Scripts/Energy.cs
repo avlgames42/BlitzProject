@@ -53,6 +53,7 @@ public class Energy : MonoBehaviour {
     {
         if(collision.gameObject.tag == "Player")
         {
+            collision.SendMessage("getEnergy", 1);
             Destroy(this.gameObject);
         }
     }

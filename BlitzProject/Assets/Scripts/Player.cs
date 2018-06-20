@@ -9,6 +9,8 @@ public class Player : MonoBehaviour {
     Animator anim;
     Vector2 movement;
 
+    public GameObject energyCounter;
+
     public GameObject lifeBar;
     public GameObject initialMap;
     public GameObject currentMap;
@@ -25,9 +27,14 @@ public class Player : MonoBehaviour {
     float shield = 0;
     float shieldMax = 0;
 
+    
+
     //controle
     bool isAttacking = false;
 
+    int xp = 0;
+
+    GameObject gm;
 
     private void Awake()
     {
@@ -43,32 +50,56 @@ public class Player : MonoBehaviour {
         Camera.main.GetComponent<MainCamera>().setBounds(initialMap);
 
         hp = hpMax;
-	}
+
+        gm = GameObject.Find("Manager");
+    }
 	
 	// Update is called once per frame
 	void Update () {
-
-        lifeBar.GetComponent<Image>().fillAmount = hp / hpMax;
-
-        if (hp > hpMax) hp = hpMax;
-        if (hp < 0) hp = 0;
-
-        aimDirection = new Vector3(Input.GetAxisRaw("HorizontalDireito"), Input.GetAxisRaw("VerticalDireito"));
-        aim.transform.localPosition = aimDirection;
-
-        movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        walk(movement);
-
-        if (Input.GetAxisRaw("HorizontalDireito") != 0 || Input.GetAxisRaw("VerticalDireito") != 0)
+        if (gm.GetComponent<GameManager>().gameState.Equals("play"))
         {
-           if(!isAttacking) fire();
+            //pause 
+            if (Input.GetButtonDown("START") && Time.timeScale == 0)
+            {
+                Time.timeScale = 1;              
+            }
+            else if (Input.GetButtonDown("START") && Time.timeScale == 1)
+            {
+                Time.timeScale = 0;               
+            }
+
+            // pinta barra de hp
+            lifeBar.GetComponent<Image>().fillAmount = hp / hpMax;
+
+            //atualiza quantidade de energia
+            energyCounter.GetComponent<Text>().text = xp.ToString();
+
+
+            if (hp > hpMax) hp = hpMax;
+            if (hp <= 0)
+            {
+                hp = 0;
+                gm.SendMessage("showGameOver");
+            }
+
+
+            aimDirection = new Vector3(Input.GetAxisRaw("HorizontalDireito"), Input.GetAxisRaw("VerticalDireito"));
+            aim.transform.localPosition = aimDirection;
+
+            movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+            walk(movement);
+
+            if (Input.GetAxisRaw("HorizontalDireito") != 0 || Input.GetAxisRaw("VerticalDireito") != 0)
+            {
+                if (!isAttacking) fire();
+            }
         }
-
-
+       
     }
 
     void walk(Vector2 movement)
     {
+
         transform.Translate(movement * speed * Time.deltaTime);
 
         if (Input.GetAxisRaw("HorizontalDireito") != 0 || Input.GetAxisRaw("VerticalDireito") != 0)
@@ -105,5 +136,10 @@ public class Player : MonoBehaviour {
     public void takeDamage(float damage)
     {
         hp -= damage;
+    }
+
+    public void getEnergy(int energy)
+    {
+        xp += energy;
     }
 }

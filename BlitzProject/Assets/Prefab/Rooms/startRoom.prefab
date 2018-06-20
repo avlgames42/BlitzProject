@@ -11,6 +11,21 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1802474477710134}
   m_IsPrefabParent: 1
+--- !u!1 &1131846855880912
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4603332437013978}
+  m_Layer: 0
+  m_Name: doors
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1154316141587662
 GameObject:
   m_ObjectHideFlags: 0
@@ -204,6 +219,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4098100814230744}
   - component: {fileID: 114810897004599608}
+  - component: {fileID: 114327783538603632}
   m_Layer: 0
   m_Name: startRoom
   m_TagString: Untagged
@@ -289,10 +305,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1802474477710134}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -30.137257, y: 0.42663956, z: 0}
+  m_LocalPosition: {x: -29.608871, y: -101.51801, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4786707571454786}
+  - {fileID: 4603332437013978}
   - {fileID: 4748422331495358}
   - {fileID: 4790749425375556}
   - {fileID: 4964842854130092}
@@ -327,7 +344,7 @@ Transform:
   m_Children:
   - {fileID: 4113252779883500}
   m_Father: {fileID: 4098100814230744}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4142211101103610
 Transform:
@@ -381,7 +398,20 @@ Transform:
   - {fileID: 4991956931079218}
   - {fileID: 4798796242620568}
   m_Father: {fileID: 4098100814230744}
-  m_RootOrder: 4
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4603332437013978
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1131846855880912}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4098100814230744}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4704999537166154
 Transform:
@@ -395,7 +425,7 @@ Transform:
   m_Children:
   - {fileID: 4142211101103610}
   m_Father: {fileID: 4098100814230744}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4748422331495358
 Transform:
@@ -409,7 +439,7 @@ Transform:
   m_Children:
   - {fileID: 4177193959030730}
   m_Father: {fileID: 4098100814230744}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4786707571454786
 Transform:
@@ -437,7 +467,7 @@ Transform:
   m_Children:
   - {fileID: 4837495020389774}
   m_Father: {fileID: 4098100814230744}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4798796242620568
 Transform:
@@ -490,7 +520,7 @@ Transform:
   m_Children:
   - {fileID: 4303300823314698}
   m_Father: {fileID: 4098100814230744}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4991956931079218
 Transform:
@@ -838,6 +868,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1874989c5e2da094ea00112c6a895694, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114327783538603632
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1802474477710134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55477ce722e4df249954e06cfb8b8ecc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  peek: 0
+  clear: 0
+  active: 0
+  populated: 0
+  small: 1
+  enemysLeft: 0
+  doors: {fileID: 1131846855880912}
+  enemySpot: []
 --- !u!114 &114342570185115978
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -940,7 +989,7 @@ MonoBehaviour:
   target: {fileID: 0}
   targetMap: {fileID: 0}
   info: 
-  isActive: 0
+  isActive: 1
 --- !u!114 &114810897004599608
 MonoBehaviour:
   m_ObjectHideFlags: 1

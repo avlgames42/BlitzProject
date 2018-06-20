@@ -8,6 +8,8 @@ TagManager:
   - Attack
   - Enemy
   - Destructibles
+  - Chest
+  - xp
   layers:
   - Default
   - TransparentFX
@@ -18,7 +20,7 @@ TagManager:
   - 
   - 
   - Enemy
-  - 
+  - Player
   - 
   - 
   - 

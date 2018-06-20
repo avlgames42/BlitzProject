@@ -217,17 +217,31 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\backgroundControl.cs" />
+    <Compile Include="Assets\Scripts\chest.cs" />
     <Compile Include="Assets\Scripts\Destructibles.cs" />
     <Compile Include="Assets\Scripts\Enemy.cs" />
+    <Compile Include="Assets\Scripts\EnemyTorreta.cs" />
     <Compile Include="Assets\Scripts\Energy.cs" />
+    <Compile Include="Assets\Scripts\Fall.cs" />
     <Compile Include="Assets\Scripts\FixDepth.cs" />
     <Compile Include="Assets\Scripts\FloorGenerator.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Scripts\H6.cs" />
+    <Compile Include="Assets\Scripts\hideSpriteRender.cs" />
+    <Compile Include="Assets\Scripts\Logo.cs" />
     <Compile Include="Assets\Scripts\MainCamera.cs" />
     <Compile Include="Assets\Scripts\MapConfig.cs" />
+    <Compile Include="Assets\Scripts\menuInventory.cs" />
+    <Compile Include="Assets\Scripts\menuPrincipal.cs" />
+    <Compile Include="Assets\Scripts\musicControl.cs" />
+    <Compile Include="Assets\Scripts\newEnemy.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\Scripts\Shoot.cs" />
+    <Compile Include="Assets\Scripts\ShootTorreta.cs" />
+    <Compile Include="Assets\Scripts\Spikes.cs" />
     <Compile Include="Assets\Scripts\Spot.cs" />
+    <Compile Include="Assets\Scripts\Torch.cs" />
     <Compile Include="Assets\Scripts\Warp.cs" />
     <Compile Include="Assets\Tiled2Unity\Scripts\Runtime\CircleObject.cs" />
     <Compile Include="Assets\Tiled2Unity\Scripts\Runtime\GameObjectExtensions.cs" />
@@ -267,7 +281,22 @@
     <None Include="Assets\Tiled2Unity\Imported\mapa_4.tiled2unity.xml" />
     <None Include="Assets\Tiled2Unity\Imported\mapa_5.tiled2unity.xml" />
     <None Include="Assets\Tiled2Unity\Imported\mapas_1.tiled2unity.xml" />
+    <None Include="Assets\Tiled2Unity\Imported\mapas_10.tiled2unity.xml" />
+    <None Include="Assets\Tiled2Unity\Imported\mapas_11.tiled2unity.xml" />
+    <None Include="Assets\Tiled2Unity\Imported\mapas_12.tiled2unity.xml" />
+    <None Include="Assets\Tiled2Unity\Imported\mapas_13.tiled2unity.xml" />
+    <None Include="Assets\Tiled2Unity\Imported\mapas_14.tiled2unity.xml" />
+    <None Include="Assets\Tiled2Unity\Imported\mapas_15.tiled2unity.xml" />
+    <None Include="Assets\Tiled2Unity\Imported\mapas_16.tiled2unity.xml" />
+    <None Include="Assets\Tiled2Unity\Imported\mapas_17.tiled2unity.xml" />
+    <None Include="Assets\Tiled2Unity\Imported\mapas_18.tiled2unity.xml" />
     <None Include="Assets\Tiled2Unity\Imported\mapas_2.tiled2unity.xml" />
+    <None Include="Assets\Tiled2Unity\Imported\mapas_3.tiled2unity.xml" />
+    <None Include="Assets\Tiled2Unity\Imported\mapas_4.tiled2unity.xml" />
+    <None Include="Assets\Tiled2Unity\Imported\mapas_6.tiled2unity.xml" />
+    <None Include="Assets\Tiled2Unity\Imported\mapas_7.tiled2unity.xml" />
+    <None Include="Assets\Tiled2Unity\Imported\mapas_8.tiled2unity.xml" />
+    <None Include="Assets\Tiled2Unity\Imported\mapas_9.tiled2unity.xml" />
     <None Include="Assets\Tiled2Unity\Imported\maps_hall.tiled2unity.xml" />
     <None Include="Assets\Tiled2Unity\Imported\maps_nowayout_left.tiled2unity.xml" />
     <None Include="Assets\Tiled2Unity\Imported\maps_nowayout_right.tiled2unity.xml" />
