@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour {
     public static int enemysTotal = 0;
 
     public GameObject energy;
+    public GameObject heal;
 
     // variaveis para controle de salas
 

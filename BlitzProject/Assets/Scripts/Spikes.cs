@@ -14,6 +14,8 @@ public class Spikes : MonoBehaviour {
 	void Start () {
         GetComponent<BoxCollider2D>().enabled = false;
         anim = GetComponent<Animator>();
+
+        GetComponent<SpriteRenderer>().sortingLayerName = "Door";
     }
 	
 	// Update is called once per frame

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour {
 
@@ -35,15 +36,26 @@ public class Player : MonoBehaviour {
     int xp = 0;
 
     GameObject gm;
+    GameObject knn;
 
     private void Awake()
     {
         //Assert.IsNotNull(initialMap);
         aim.GetComponent<SpriteRenderer>().enabled = false;
+
+        knn = GameObject.Find("KnnWatcher");
     }
 
     // Use this for initialization
     void Start () {
+
+        if(initialMap.GetComponent<Transform>().GetChild(0).gameObject.GetComponent<Warp>().targetMap == null )
+        {
+            SceneManager.LoadScene("Floor_1");
+        }
+
+
+
         anim = GetComponent<Animator>();
 
         //passa o mapa inicial para a referencia da camera
@@ -124,6 +136,12 @@ public class Player : MonoBehaviour {
     {
         StartCoroutine(attackDelay());
         Instantiate(shoot, transform.position, transform.rotation);
+        if (knn.GetComponent<knnRecord>().knnAtivar)
+        {
+            knn.GetComponent<knnRecord>().numberOfShoots++;
+
+        }
+            
     }
 
     IEnumerator attackDelay()
@@ -136,6 +154,21 @@ public class Player : MonoBehaviour {
     public void takeDamage(float damage)
     {
         hp -= damage;
+        if (knn.GetComponent<knnRecord>().knnAtivar)
+        {
+            knn.GetComponent<knnRecord>().hpLost += Mathf.RoundToInt(damage);
+        }
+        
+    }
+
+    public void gainHp(float heal)
+    {
+        hp += heal;
+        if (knn.GetComponent<knnRecord>().knnAtivar && hp != hpMax)
+        {
+            knn.GetComponent<knnRecord>().heal++;
+        }
+
     }
 
     public void getEnergy(int energy)

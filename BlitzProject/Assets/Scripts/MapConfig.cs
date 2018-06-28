@@ -19,39 +19,54 @@ public class MapConfig : MonoBehaviour {
 
     public List<GameObject> enemySpot = new List<GameObject>();
     GameObject gm;
+    GameObject knn;
 
     int aux;
+    float timer = 0;
+    bool timerLock = false;
 
     int[] check = new int[10] {0,0,0,0,0,0,0,0,0,0};
 
     // Use this for initialization
     void Start () {
         gm = GameObject.Find("Manager");
+        knn = GameObject.Find("KnnWatcher");
 
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-
+        if(knn.GetComponent<knnRecord>().knnAtivar == true && !timerLock)
+        {
+            timerLock = true;
+            StartCoroutine(timeCount());
+        }
 
         //trava as portas quando o mapa for ativo
         if (active && !clear)
         {
+            knn.GetComponent<knnRecord>().knnAtivar = true;
             doors.gameObject.SetActive(true);
             if(!populated && enemysLeft > 0) populateRoom();
-            //Instantiate(gm.GetComponent<GameManager>().listEnemysLv1[0], enemySpot[1].transform.position, enemySpot[1].transform.rotation);
+            
         }
 
         //liberaas portas quando todos inimigos forem derrotados
         if (clear)
         {
             doors.gameObject.SetActive(false);
+            if (knn.GetComponent<knnRecord>().knnAtivar)
+            {
+                knn.GetComponent<knnRecord>().knnAtivar = false;
+            }
             //Instantiate(chest, chestSpot.transform.position, chestSpot.transform.rotation);
         }
 
         if (enemysLeft <= 0)
         {
+
+
             enemysLeft = 0;
             clear = true;
         }
@@ -82,15 +97,7 @@ public class MapConfig : MonoBehaviour {
             check[j] = aux;
             //sorteia inimigo
             aux = Mathf.RoundToInt((Random.Range(0, gm.GetComponent<GameManager>().listEnemysLv1.Count) * 100) / 100);
-            /*int num = Mathf.RoundToInt(Random.Range(0, 9));
-            if(num <= 4)
-            {
-                gm.GetComponent<GameManager>().listEnemysLv1[aux].GetComponent<Enemy>().horizontal = true;
-            }
-            else
-            {
-                gm.GetComponent<GameManager>().listEnemysLv1[aux].GetComponent<Enemy>().horizontal = false;
-            }*/
+
             Instantiate(gm.GetComponent<GameManager>().listEnemysLv1[aux], enemySpot[check[j]].transform.position, enemySpot[check[j]].transform.rotation);
 
         }
@@ -99,5 +106,18 @@ public class MapConfig : MonoBehaviour {
 
     }
 
+    //conta o tempo que o jogador leva para derrotar os inimigos e liberar as portas
+    IEnumerator timeCount()
+    {
+        timer += Time.deltaTime;
+        knn.GetComponent<knnRecord>().seconds = Mathf.RoundToInt(timer);
+        if (knn.GetComponent<knnRecord>().knnAtivar == false && clear)
+        {
+            timer= 0;
+            timerLock = false;
+            yield return new WaitForSeconds(2f);
+            
+        }
+    }
 
 }

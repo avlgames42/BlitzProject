@@ -11,10 +11,12 @@ public class Destructibles : MonoBehaviour {
     int aux;
 
     GameObject gm;
+    GameObject knn;
 	// Use this for initialization
 	void Start () {
         anim = GetComponent<Animator>();
         gm = GameObject.Find("Manager");
+        knn = GameObject.Find("KnnWatcher");
 	}
 	
 	// Update is called once per frame
@@ -37,18 +39,22 @@ public class Destructibles : MonoBehaviour {
             switch(aux)
             {
                 case 1:
-                case 2:
                     //drop potion
-                    print("poçao");
+                    Instantiate(gm.GetComponent<GameManager>().heal, transform.position, transform.rotation);
                     break;
                 case 3:
                 case 4:
+                case 5:
                     Instantiate(gm.GetComponent<GameManager>().energy, transform.position, transform.rotation);
-                   // Instantiate(xp, transform.position, transform.rotation);
                     break;
             }
 
             GetComponent<Destructibles>().enabled = false;
+            if (knn.GetComponent<knnRecord>().knnAtivar)
+            {
+                knn.GetComponent<knnRecord>().numberOfBoxes++;
+            }
+                
         }
 
 

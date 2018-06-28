@@ -47,7 +47,9 @@ public class Enemy: MonoBehaviour
     public GameObject lifeBar;
 
     GameObject gm;
+    GameObject knn;
 
+    public GameObject miniSlime;
 
     // Use this for initialization
     void Start()
@@ -59,8 +61,9 @@ public class Enemy: MonoBehaviour
         hp = hpMax;
         speedRef = speed;
         gm = GameObject.Find("Manager");
+        knn = GameObject.Find("KnnWatcher");
 
-        
+
     }
 
     // Update is called once per frame
@@ -83,17 +86,7 @@ public class Enemy: MonoBehaviour
                 //define target com a posicao inicial 
                 target = initialPosition;
 
-                /*
-                if(horizontal)
-                {
-                    target = new Vector3(transform.position.x + step, transform.position.y, transform.position.z);
-                }
-                else
-                {
-                    target = new Vector3(transform.position.x, transform.position.y + step, transform.position.z);
-                }
-                */
-
+                
                 //raycast em direcao ao jogador, para verificar se ele se encontra no raio de visao do inimigo
                 hit = Physics2D.Raycast(transform.position, player.transform.position - transform.position, visionRadius, 1 << LayerMask.NameToLayer("Default"));
 
@@ -119,22 +112,11 @@ public class Enemy: MonoBehaviour
                 //calcula a direcao para tratar animacao 
                 direction = (target - transform.position).normalized;
 
-                /*
-                Debug.DrawRay(transform.position, target, Color.blue,step);
-                ray = Physics2D.Raycast(transform.position, target - transform.position, step, 1 << LayerMask.NameToLayer("Default"));
-                if(ray.collider != null)
-                {
-                    if(ray.collider.tag != "Player")
-                    {
-                        step *= -1;
-                    }
-                }
-                */
-
+                
                 // se a distancia for menor que a de ataque , ataca o target
                 if (target != initialPosition && distance < AttackRadius)
                 {
-                    if (!isAttack) attack();
+                    if (!isAttack && !anim.GetCurrentAnimatorStateInfo(0).IsTag("dead")) attack();
                 }
                 else
                 {
@@ -211,6 +193,11 @@ public class Enemy: MonoBehaviour
     public void takeDamage(float damage)
     {
         hp -= damage;
+        if (knn.GetComponent<knnRecord>().knnAtivar)
+        {
+            knn.GetComponent<knnRecord>().numberOfHits++;
+        }
+            
     }
 
     void die()
@@ -317,9 +304,29 @@ public class Enemy: MonoBehaviour
         Destroy(this.gameObject);
     }
 
+    void destroyMiniSlime()
+    {
+        for (int i = 0; i < xp; i++)
+        {
+            Instantiate(energy, transform.position, transform.rotation);
+        }
+        Destroy(this.gameObject);
+    }
+
+
     public IEnumerator isReady()
     {
         yield return new WaitForSeconds(.5f);
         ready = true;
+    }
+
+    public IEnumerator createMiniSlime()
+    {
+        player.GetComponent<Player>().currentMap.GetComponent<MapConfig>().defeatEnemy();
+        GameManager.enemysTotal--;
+        Instantiate(miniSlime, transform.position, transform.rotation);
+        yield return new WaitForSeconds(1.2f);
+        Instantiate(miniSlime, transform.position, transform.rotation);
+        Destroy(this.gameObject);
     }
 }

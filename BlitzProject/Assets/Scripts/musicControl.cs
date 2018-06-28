@@ -11,8 +11,12 @@ public class musicControl : MonoBehaviour {
     bool play = false;
     int aux;
 
+    public static musicControl instance = null;
+
     private void Awake()
     {
+        if (instance == null) instance = this;
+        else if (instance != this) Destroy(gameObject);
         DontDestroyOnLoad(this.gameObject);
     }
 

@@ -57,4 +57,9 @@ public class Energy : MonoBehaviour {
             Destroy(this.gameObject);
         }
     }
+
+    private void OnBecameInvisible()
+    {
+        Destroy(this.gameObject);
+    }
 }

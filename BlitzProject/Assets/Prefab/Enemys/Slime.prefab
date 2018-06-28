@@ -75,7 +75,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1791868113390868}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -239.76147, y: 347.81238, z: -0.14453125}
+  m_LocalPosition: {x: -157.21028, y: 42.743904, z: -0.14453125}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224582120675997726}
@@ -164,7 +164,7 @@ MonoBehaviour:
   hpMax: 3
   attackDamage: 1
   visionRadius: 8
-  AttackRadius: 1.2
+  AttackRadius: 0.7
   attackCollider: {fileID: 58147832788358194}
   horizontal: 0
   ranged: 0
@@ -173,6 +173,7 @@ MonoBehaviour:
   xp: 4
   energy: {fileID: 1958113128598900, guid: 37a63c5e36a9b7c4dae874cffb461b90, type: 2}
   lifeBar: {fileID: 1963560732697514}
+  miniSlime: {fileID: 1702557978795558, guid: 4ad85c6dc8fa2e74fbcc8c1800d393de, type: 2}
 --- !u!114 &114131199158435166
 MonoBehaviour:
   m_ObjectHideFlags: 1

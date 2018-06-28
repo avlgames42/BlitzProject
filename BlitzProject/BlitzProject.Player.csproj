@@ -460,18 +460,25 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\a2vlScript.cs" />
     <Compile Include="Assets\Scripts\backgroundControl.cs" />
     <Compile Include="Assets\Scripts\chest.cs" />
     <Compile Include="Assets\Scripts\Destructibles.cs" />
     <Compile Include="Assets\Scripts\Enemy.cs" />
     <Compile Include="Assets\Scripts\EnemyTorreta.cs" />
     <Compile Include="Assets\Scripts\Energy.cs" />
+    <Compile Include="Assets\Scripts\Extensions.cs" />
     <Compile Include="Assets\Scripts\Fall.cs" />
+    <Compile Include="Assets\Scripts\fatecScript.cs" />
     <Compile Include="Assets\Scripts\FixDepth.cs" />
     <Compile Include="Assets\Scripts\FloorGenerator.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\H6.cs" />
+    <Compile Include="Assets\Scripts\Heal.cs" />
     <Compile Include="Assets\Scripts\hideSpriteRender.cs" />
+    <Compile Include="Assets\Scripts\InitialApresentation.cs" />
+    <Compile Include="Assets\Scripts\kNN.cs" />
+    <Compile Include="Assets\Scripts\knnRecord.cs" />
     <Compile Include="Assets\Scripts\Logo.cs" />
     <Compile Include="Assets\Scripts\MainCamera.cs" />
     <Compile Include="Assets\Scripts\MapConfig.cs" />
@@ -480,6 +487,7 @@
     <Compile Include="Assets\Scripts\musicControl.cs" />
     <Compile Include="Assets\Scripts\newEnemy.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
+    <Compile Include="Assets\Scripts\ReadFile.cs" />
     <Compile Include="Assets\Scripts\Shoot.cs" />
     <Compile Include="Assets\Scripts\ShootTorreta.cs" />
     <Compile Include="Assets\Scripts\Spikes.cs" />
