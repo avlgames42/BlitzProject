@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class Heal : MonoBehaviour {
 
+    GameObject gm;
+
 	// Use this for initialization
 	void Start () {
-		
+
+        gm = GameObject.Find("Manager");
 	}
 	
 	// Update is called once per frame
@@ -18,6 +21,7 @@ public class Heal : MonoBehaviour {
     {
         if(collision.tag == "Player")
         {
+            gm.SendMessage("PlayHealSound");
             collision.SendMessage("gainHp", 3f);
             Destroy(this.gameObject);
         }
@@ -27,4 +31,6 @@ public class Heal : MonoBehaviour {
     {
         Destroy(this.gameObject);
     }
+
+
 }

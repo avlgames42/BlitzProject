@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4148559682980806}
   - component: {fileID: 114690355757576442}
+  - component: {fileID: 82767924812183126}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -40,6 +41,86 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &82767924812183126
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1762703060576114}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!114 &114690355757576442
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -59,3 +140,8 @@ MonoBehaviour:
   win: {fileID: 0}
   gameState: play
   energy: {fileID: 1958113128598900, guid: 37a63c5e36a9b7c4dae874cffb461b90, type: 2}
+  heal: {fileID: 1206397498252524, guid: b6e075597bad9c045b3cfa023b51c6a4, type: 2}
+  energySound: {fileID: 8300000, guid: 6ed547c376a757a4a84c0aed490bc1f1, type: 3}
+  breakSound: {fileID: 8300000, guid: 3d9f46a8bc3007143a65c96cad163754, type: 3}
+  boxBreakSound: {fileID: 8300000, guid: cdaf506f82738864c97cd7248bfcc821, type: 3}
+  healSound: {fileID: 8300000, guid: 9af0b82695dcb1f4f858b7631ba44a2c, type: 3}

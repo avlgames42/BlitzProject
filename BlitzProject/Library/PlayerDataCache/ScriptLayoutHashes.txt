@@ -96,6 +96,7 @@ ff05dcdf90651c3d98a9cad3df5e471e UnityEngine.Timeline.dll:UnityEngine.Timeline.C
 6af7378a45ad6da4992a71ef50ddc2eb UnityEngine.Timeline.dll:UnityEngine.Timeline.GroupTrack
 6af7378a45ad6da4992a71ef50ddc2eb UnityEngine.Timeline.dll:UnityEngine.Timeline.PlayableTrack
 af723155c251fcfa0e66530a75f3ea4c UnityEngine.Timeline.dll:UnityEngine.Timeline.TimelineAsset
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Heal
 fc1e0f4d8439d9928083474691511a13 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkAnimator
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Networking.dll:UnityEngine.Networking.NetworkBehaviour
 60b2bb652410a5867a5ab9a01cd38461 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkDiscovery
@@ -114,6 +115,7 @@ e9bdabf9265d758d56f01bb188916fa8 UnityEngine.Networking.dll:UnityEngine.Networki
 fab3f48bb6484a76cde2b81e3201be7e Assembly-CSharp.dll:Tiled2Unity.TileObject
 1ac45e65362b8990ca8bc05364d4581e Assembly-CSharp.dll:Tiled2Unity.ImportBehaviour
 dc07d7ad69b399a46e92c483bf1c04ca UnityEngine.Analytics.dll:UnityEngine.Analytics.AnalyticsTracker
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.ReadFile
 bc68edb0af574bf79f9550ead8ebae5c UnityEngine.HoloLens.dll:UnityEngine.Audio.AudioSpatializerMicrosoft
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.HoloLens.dll:UnityEngine.EventSystems.HoloLensInput
 463516d5b5fe8e67a0a24c48f2095b04 UnityEngine.HoloLens.dll:UnityEngine.EventSystems.HoloLensInputModule
@@ -211,6 +213,7 @@ c2a559476dd3fb0304c945069ff39340 Assembly-CSharp.dll:.EnemyTorreta
 e0f7ffd5d5c2abe4b2e16569a21163da UnityEngine.GoogleAudioSpatializer.dll:UnityEngine.Experimental.Audio.Google.GvrAudioRoom
 e0f7ffd5d5c2abe4b2e16569a21163da UnityEngine.GoogleAudioSpatializer.dll:UnityEngine.Experimental.Audio.Google.GvrAudioRoom
 35469bc0f4908f93bebdb51c0c6c178d Assembly-CSharp.dll:.ShootTorreta
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.a2vlScript
 c504b63c4765c8cb2b77de0f6e3e1dfb Assembly-CSharp.dll:.Spikes
 bc68edb0af574bf79f9550ead8ebae5c UnityEngine.HoloLens.dll:UnityEngine.Audio.AudioSpatializerMicrosoft
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.HoloLens.dll:UnityEngine.EventSystems.HoloLensInput
@@ -223,14 +226,17 @@ bd311f369a9333cc9d604fea791f7af8 Assembly-CSharp.dll:.menuInventory
 e9037a06a02588a8c913062b832b55a5 Assembly-CSharp.dll:.FloorGenerator
 9de3a22eca9aefadba2d10d5987cefe3 UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:Tiled2Unity.SortingLayerExposed
+e3aefbb5c5adde72503e2741b90762f8 Assembly-CSharp.dll:.knnRecord
 b6a4e0f46582e1b4ea27adb53405c4c7 Assembly-CSharp.dll:Tiled2Unity.SpriteDepthInMap
-6f5fb75ce62d6d86bd1eebdfdbd0908b Assembly-CSharp.dll:.Enemy
+09dada0eaf4adb7d5181d70ba618f999 Assembly-CSharp.dll:.Enemy
 f2f34a8b5177403ded8199fff570f11a Assembly-CSharp.dll:.Warp
 d290070ecf091336e70150a7db25d112 Assembly-CSharp.dll:Tiled2Unity.ObjectLayer
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.fatecScript
 6e4dfcb00a47433146060ae101365d6d Assembly-CSharp.dll:.GameManager
 54351897f7800dd41958e721a0139efd Assembly-CSharp.dll:.Shoot
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.backgroundControl
 7bd8768b90b905d5b5541fe42addb342 Assembly-CSharp.dll:.Logo
+bcfdd95e66e31a82db1efd8e0954726b Assembly-CSharp.dll:.InitialApresentation
 05524b8f659e7bfe5756d1335fec24ba Vuforia.UnityExtensions.dll:Vuforia.BackgroundPlaneBehaviour
 342c9a27403d4f1a11164f989d99bd3f Vuforia.UnityExtensions.dll:Vuforia.CloudRecoBehaviour
 9519b45b1fe77ca14bbfebb6a5236e2e Vuforia.UnityExtensions.dll:Vuforia.CylinderTargetBehaviour
@@ -290,5 +296,3 @@ a9e1c36c671666e79706791e556d5100 Vuforia.UnityExtensions.dll:Vuforia.VuMarkBehav
 3d1b89310e77c34bc0c8d7132231345c Vuforia.UnityExtensions.dll:Vuforia.WireframeBehaviour
 05524b8f659e7bfe5756d1335fec24ba Vuforia.UnityExtensions.dll:Vuforia.WireframeTrackableEventHandler
 15bea26698002c6c4a3087131232ce5c Vuforia.UnityExtensions.dll:Vuforia.WordBehaviour
-8b8aba3b8dc8648705a253937bc51835 Assembly-CSharp.dll:.knnRecord
-05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Heal

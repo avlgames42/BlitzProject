@@ -19,11 +19,16 @@ public class GameManager : MonoBehaviour {
     public GameObject energy;
     public GameObject heal;
 
+    public AudioClip energySound;
+    public AudioClip breakSound;
+    public AudioClip boxBreakSound;
+    public AudioClip healSound;
+
     // variaveis para controle de salas
 
     // Use this for initialization
     void Start () {
-
+        
         gameOver.SetActive(false);
         win.SetActive(false);
         GameObject obj = GameObject.Find("FloorGeneratorObj");
@@ -63,14 +68,50 @@ public class GameManager : MonoBehaviour {
 
     }
 
+    void PlayerEnergySound()
+    {
+        GetComponent<AudioSource>().PlayOneShot(energySound, musicControl.soundVolume);
+    }
+
     
 
     void showGameOver()
     {
+        if(menuPrincipal.initialLanguage == 0)
+        {
+            gameOver.GetComponent<Transform>().GetChild(2).gameObject.GetComponent<Transform>().GetChild(0).GetComponent<Text>().text = "REINICIAR O JOGO";
+            gameOver.GetComponent<Transform>().GetChild(2).gameObject.GetComponent<Transform>().GetChild(1).GetComponent<Text>().text = "REINICIAR O JOGO";
+
+            gameOver.GetComponent<Transform>().GetChild(3).gameObject.GetComponent<Transform>().GetChild(0).GetComponent<Text>().text = "VOLTAR PARA O MENU";
+            gameOver.GetComponent<Transform>().GetChild(3).gameObject.GetComponent<Transform>().GetChild(1).GetComponent<Text>().text = "VOLTAR PARA O MENU";
+        }
+        if(menuPrincipal.initialLanguage == 1)
+        {
+            gameOver.GetComponent<Transform>().GetChild(2).gameObject.GetComponent<Transform>().GetChild(0).GetComponent<Text>().text = "RESTART THE GAME";
+            gameOver.GetComponent<Transform>().GetChild(2).gameObject.GetComponent<Transform>().GetChild(1).GetComponent<Text>().text = "RESTART THE GAME";
+
+            gameOver.GetComponent<Transform>().GetChild(3).gameObject.GetComponent<Transform>().GetChild(0).GetComponent<Text>().text = "BACK TO MENU";
+            gameOver.GetComponent<Transform>().GetChild(3).gameObject.GetComponent<Transform>().GetChild(1).GetComponent<Text>().text = "BACK TO MENU";
+        }
         gameState = "gameover";
         gameOver.SetActive(true);
     }
 
- 
+    void BoxBreakSound()
+    {
+        GetComponent<AudioSource>().PlayOneShot(boxBreakSound, musicControl.soundVolume);
+    }
+
+    void JarBreakSound()
+    {
+        GetComponent<AudioSource>().PlayOneShot(breakSound, musicControl.soundVolume);
+    }
+
+    void PlayHealSound()
+    {
+        GetComponent<AudioSource>().PlayOneShot(healSound, musicControl.soundVolume);
+    }
+
+
 
 }

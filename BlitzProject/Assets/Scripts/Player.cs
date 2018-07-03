@@ -28,6 +28,9 @@ public class Player : MonoBehaviour {
     float shield = 0;
     float shieldMax = 0;
 
+    public AudioClip hitSound;
+    public AudioClip fireSound;
+
     
 
     //controle
@@ -48,6 +51,8 @@ public class Player : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+
+       
 
         if(initialMap.GetComponent<Transform>().GetChild(0).gameObject.GetComponent<Warp>().targetMap == null )
         {
@@ -136,6 +141,7 @@ public class Player : MonoBehaviour {
     {
         StartCoroutine(attackDelay());
         Instantiate(shoot, transform.position, transform.rotation);
+        GetComponent<AudioSource>().PlayOneShot(fireSound, musicControl.soundVolume);
         if (knn.GetComponent<knnRecord>().knnAtivar)
         {
             knn.GetComponent<knnRecord>().numberOfShoots++;
@@ -154,6 +160,7 @@ public class Player : MonoBehaviour {
     public void takeDamage(float damage)
     {
         hp -= damage;
+        GetComponent<AudioSource>().PlayOneShot(hitSound, musicControl.soundVolume);
         if (knn.GetComponent<knnRecord>().knnAtivar)
         {
             knn.GetComponent<knnRecord>().hpLost += Mathf.RoundToInt(damage);

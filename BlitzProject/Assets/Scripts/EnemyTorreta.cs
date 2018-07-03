@@ -32,6 +32,8 @@ public class EnemyTorreta : MonoBehaviour {
     public GameObject energy;
     public GameObject lifeBar;
 
+    public AudioClip hitSound;
+
     // Use this for initialization
     void Start () {
         initialPosition = transform.position;
@@ -91,6 +93,9 @@ public class EnemyTorreta : MonoBehaviour {
                     {
                         StartCoroutine(attackDelay());
                         Instantiate(shoot, transform.position, transform.rotation);
+
+
+
                     }
                 }
                 else
@@ -153,6 +158,7 @@ public class EnemyTorreta : MonoBehaviour {
     public void takeDamage(float damage)
     {
         hp -= damage;
+        GetComponent<AudioSource>().PlayOneShot(hitSound, musicControl.soundVolume);
     }
 
     void die()

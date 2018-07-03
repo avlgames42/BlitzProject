@@ -10,6 +10,7 @@ public class musicControl : MonoBehaviour {
 
     bool play = false;
     int aux;
+    public static float soundVolume;
 
     public static musicControl instance = null;
 

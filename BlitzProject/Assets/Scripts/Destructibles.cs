@@ -65,6 +65,14 @@ public class Destructibles : MonoBehaviour {
         if (collision.tag == "Attack")
         {
             anim.SetTrigger("hit");
+            if (box)
+            {
+                gm.SendMessage("BoxBreakSound");
+            }
+            else
+            {
+                gm.SendMessage("JarBreakSound");
+            }
         }
     }
 }

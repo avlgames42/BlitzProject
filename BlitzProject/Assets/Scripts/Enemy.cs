@@ -39,6 +39,7 @@ public class Enemy: MonoBehaviour
     bool isActive = false;
     bool ready = false;
 
+    public List<AudioClip> hitSound = new List<AudioClip>();
 
     //quantidade de energia que dropa
     public int xp;
@@ -193,6 +194,9 @@ public class Enemy: MonoBehaviour
     public void takeDamage(float damage)
     {
         hp -= damage;
+        int aux = Random.Range(0, 2);
+        GetComponent<AudioSource>().PlayOneShot(hitSound[aux], musicControl.soundVolume);
+
         if (knn.GetComponent<knnRecord>().knnAtivar)
         {
             knn.GetComponent<knnRecord>().numberOfHits++;

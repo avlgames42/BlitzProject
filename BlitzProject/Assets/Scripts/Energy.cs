@@ -13,6 +13,8 @@ public class Energy : MonoBehaviour {
     bool isActive = false;
     GameObject player;
     RaycastHit2D hit;
+    GameObject gm;
+
 
     private void Awake()
     {
@@ -22,6 +24,7 @@ public class Energy : MonoBehaviour {
     void Start () {
         delay = Random.Range(0.5f, 1.2f);
         player = GameObject.FindGameObjectWithTag("Player");
+        gm = GameObject.Find("Manager");
 
     }
 	
@@ -53,6 +56,7 @@ public class Energy : MonoBehaviour {
     {
         if(collision.gameObject.tag == "Player")
         {
+            gm.SendMessage("PlayerEnergySound");
             collision.SendMessage("getEnergy", 1);
             Destroy(this.gameObject);
         }
