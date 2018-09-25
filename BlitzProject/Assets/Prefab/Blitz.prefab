@@ -284,10 +284,12 @@ MonoBehaviour:
   initialMap: {fileID: 0}
   currentMap: {fileID: 0}
   aim: {fileID: 1663129962087488}
-  shoot: {fileID: 1730183102585228, guid: 565c7c7b95970c545b2c1b5103a5451a, type: 2}
+  weapon: {fileID: 0}
+  shoot: {fileID: 0}
   speed: 4
   hitSound: {fileID: 8300000, guid: b94c07deb6ddecc4696551a57305bae8, type: 3}
   fireSound: {fileID: 8300000, guid: d6b0954cc3ed2ac479aaf95b0873686f, type: 3}
+  recordKnn: 0
 --- !u!212 &212148340281029144
 SpriteRenderer:
   m_ObjectHideFlags: 1

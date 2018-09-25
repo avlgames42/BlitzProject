@@ -145,3 +145,6 @@ MonoBehaviour:
   breakSound: {fileID: 8300000, guid: 3d9f46a8bc3007143a65c96cad163754, type: 3}
   boxBreakSound: {fileID: 8300000, guid: cdaf506f82738864c97cd7248bfcc821, type: 3}
   healSound: {fileID: 8300000, guid: 9af0b82695dcb1f4f858b7631ba44a2c, type: 3}
+  shootList:
+  - {fileID: 1730183102585228, guid: 565c7c7b95970c545b2c1b5103a5451a, type: 2}
+  - {fileID: 1525628700749660, guid: 5432bf17810b80444bfb1b422febc902, type: 2}

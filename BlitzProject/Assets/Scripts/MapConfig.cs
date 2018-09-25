@@ -12,7 +12,7 @@ public class MapConfig : MonoBehaviour {
 
     //public List<GameObject> listDoors = new List<GameObject>();
     public int enemysLeft;
-
+    public bool onTime = true;
     public GameObject doors;
     //public GameObject chestSpot;
     //public GameObject chest;
@@ -20,6 +20,7 @@ public class MapConfig : MonoBehaviour {
     public List<GameObject> enemySpot = new List<GameObject>();
     GameObject gm;
     GameObject knn;
+    GameObject player;
 
     int aux;
     float timer = 0;
@@ -31,44 +32,40 @@ public class MapConfig : MonoBehaviour {
     void Start () {
         gm = GameObject.Find("Manager");
         knn = GameObject.Find("KnnWatcher");
+        player = GameObject.Find("Player");
 
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-        if(knn.GetComponent<knnRecord>().knnAtivar == true && !timerLock)
-        {
-            timerLock = true;
-            StartCoroutine(timeCount());
-        }
-
         //trava as portas quando o mapa for ativo
         if (active && !clear)
         {
-            knn.GetComponent<knnRecord>().knnAtivar = true;
+            //knn.GetComponent<knnRecord>().knnAtivar = true;
             doors.gameObject.SetActive(true);
             if(!populated && enemysLeft > 0) populateRoom();
             
+            
         }
 
-        //liberaas portas quando todos inimigos forem derrotados
+        //libera as portas quando todos inimigos forem derrotados
         if (clear)
         {
             doors.gameObject.SetActive(false);
-            if (knn.GetComponent<knnRecord>().knnAtivar)
-            {
-                knn.GetComponent<knnRecord>().knnAtivar = false;
-            }
+            //knn.GetComponent<knnRecord>().knnAtivar = false;
+
             //Instantiate(chest, chestSpot.transform.position, chestSpot.transform.rotation);
+
         }
 
         if (enemysLeft <= 0)
         {
-
-
             enemysLeft = 0;
             clear = true;
+
+            //int aux = Random.Range(0, (gm.GetComponent<GameManager>().icons.Count));
+            //Instantiate(gm.GetComponent<GameManager>().icons[aux], enemySpot[aux].transform.position, enemySpot[aux].transform.rotation);
         }
     }
 
@@ -105,19 +102,4 @@ public class MapConfig : MonoBehaviour {
         
 
     }
-
-    //conta o tempo que o jogador leva para derrotar os inimigos e liberar as portas
-    IEnumerator timeCount()
-    {
-        timer += Time.deltaTime;
-        knn.GetComponent<knnRecord>().seconds = Mathf.RoundToInt(timer);
-        if (knn.GetComponent<knnRecord>().knnAtivar == false && clear)
-        {
-            timer= 0;
-            timerLock = false;
-            yield return new WaitForSeconds(2f);
-            
-        }
-    }
-
 }

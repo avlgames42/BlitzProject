@@ -13,18 +13,25 @@ public class Shoot : MonoBehaviour {
 
     Animator anim;
 
-	// Use this for initialization
-	void Start () {
+    Vector3 targetRotation;
+
+
+
+    // Use this for initialization
+    void Start () {
         anim = GetComponent<Animator>();
         target = GameObject.Find("Aim").transform;
         direction = (target.position - transform.position).normalized;
-	}
+
+        //transform.up = -direction;
+    }
 	
 	// Update is called once per frame
 	void Update () {
 
         transform.Translate(direction * speed * Time.deltaTime);
-	}
+
+    }
 
     private void OnBecameInvisible()
     {

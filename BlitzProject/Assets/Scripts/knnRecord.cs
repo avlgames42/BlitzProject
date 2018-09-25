@@ -10,39 +10,110 @@ public class knnRecord : MonoBehaviour {
     public int hpLost;      //player
     public int heal;        //player
     public int seconds;     //mapConfig
-    public int distanceOfEnemys;
+    public int distance; // enemys
+    public List<float> distanceOfEnemys = new List<float>();
     public int distanceInRoom;
-    
+    public float distanceAux;
 
     public bool knnAtivar = false;
+    float timer = 0;
+    public bool activeTimer = false;
+    public bool blockKnn = false;
 
-    int[ , ] knn = new int[10,5];
-    int[] matriz = new int[10];
-    int indice = 0;
+    float[] knn = new float[9];
+
+    GameObject obj;
+
+    FileMaker file = new FileMaker();
+
+    public int totalEnergy = 0;
+    public int collectedEnergy = 0;
 
 
 
 	// Use this for initialization
 	void Start () {
-		
+
+        obj = GameObject.FindWithTag("Player");
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
+        knn[2] = numberOfBoxes;
 
         //salva os valores quando a porta da sala abre
         if (knnAtivar)
         {
-            knn[indice,0] = numberOfShoots;
-            knn[indice,1] = numberOfHits;
-            knn[indice,2] = numberOfBoxes;
-            knn[indice,3] = hpLost;
-            knn[indice,4] = heal;
+            knn[0] = numberOfShoots;
+            knn[1] = numberOfHits;
+            
+            knn[3] = hpLost;
+            knn[4] = heal;
+            knn[5] = seconds;
 
-            knnAtivar = false;
-            indice++;
+
+
+
+            if (activeTimer && obj.GetComponent<Player>().currentMap.GetComponent<MapConfig>().clear == false)
+            {
+                timer += Time.deltaTime;
+                seconds = Mathf.RoundToInt(timer);
+                knn[8] = obj.GetComponent<Player>().shootID;
+            }
+        }
+        else
+        {
+            if (obj.GetComponent<Player>().recordKnn && !blockKnn)
+            {
+                //dataBase.InsertDB("classe", numberOfShoots, numberOfHits, numberOfBoxes, hpLost, heal, seconds);
+
+                foreach (float d in distanceOfEnemys)
+                {
+                    distanceAux += d;
+                }
+                float aux;
+                aux = (distanceAux / distanceOfEnemys.Count);              
+                knn[6] = Mathf.RoundToInt(aux);
+
+                //calcula porcentagem de energia coletada
+                aux = (collectedEnergy * 100f) / totalEnergy;
+                knn[7] = aux;
+
+                //salva arma usada durante a sala
+                
+
+                file.WriteFile(knn);
+
+                //reseta os valores para nova captura
+                numberOfShoots = 0;
+                numberOfHits = 0;
+                numberOfBoxes = 0;
+                hpLost = 0;
+                heal = 0;
+                seconds = 0;
+                timer = 0;
+                distance = 0;
+                distanceOfEnemys.Clear();
+                distanceAux = 0;
+                collectedEnergy = 0;
+                totalEnergy = 0;
+
+                obj.GetComponent<Player>().recordKnn = false;
+                blockKnn = true;
+
+                /* knn[0] = 0;
+                 knn[1] = 0;
+                 knn[2] = 0;
+                 knn[3] = 0;
+                 knn[4] = 0;
+                 knn[5] = 0;*/
+
+
+                //dataBase.GetDB();
+            }
 
         }
 	}
+
 }

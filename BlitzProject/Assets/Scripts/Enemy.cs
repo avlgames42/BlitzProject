@@ -51,6 +51,8 @@ public class Enemy: MonoBehaviour
     GameObject knn;
 
     public GameObject miniSlime;
+    List<float> deltaDistance = new List<float>();
+    bool deltaDistanceLock = false;
 
     // Use this for initialization
     void Start()
@@ -74,6 +76,17 @@ public class Enemy: MonoBehaviour
         {
             if (isActive && ready)
             {
+                //chama contagem da distance entre inimigo e jogador
+                if (knn.GetComponent<knnRecord>().knnAtivar)
+                {
+                    if (!deltaDistanceLock)
+                    {
+                        StartCoroutine(DistanceCount());
+                    }
+
+                }
+
+
                 lifeBar.GetComponent<Image>().fillAmount = hp / hpMax;
 
                 if (hp > hpMax) hp = hpMax;
@@ -197,16 +210,33 @@ public class Enemy: MonoBehaviour
         int aux = Random.Range(0, 2);
         GetComponent<AudioSource>().PlayOneShot(hitSound[aux], musicControl.soundVolume);
 
-        if (knn.GetComponent<knnRecord>().knnAtivar)
-        {
-            knn.GetComponent<knnRecord>().numberOfHits++;
-        }
+
             
     }
 
     void die()
     {
-        anim.SetTrigger("die");     
+        //retira a animação de morte do raycast
+        gameObject.layer = 2;
+        anim.SetTrigger("die");
+        if (knn.GetComponent<knnRecord>().knnAtivar)
+        {
+            float sum = 0;
+            if(deltaDistance.Count == 0)
+            {
+                sum = .5f;
+            }
+            else
+            {
+                foreach (float d in deltaDistance)
+                {
+                    sum += d;
+                }
+                sum = sum / deltaDistance.Count;
+            }
+            knn.GetComponent<knnRecord>().distanceOfEnemys.Add(sum);
+        }
+
     }
 
     public void activeColliderAttack()
@@ -239,7 +269,12 @@ public class Enemy: MonoBehaviour
         }
         else if (collision.tag == "Attack")
         {
-            if(anim.GetCurrentAnimatorStateInfo(0).IsTag("Hit") || anim.GetCurrentAnimatorStateInfo(0).IsTag("dead"))
+            if (knn.GetComponent<knnRecord>().knnAtivar)
+            {
+                knn.GetComponent<knnRecord>().numberOfHits++;
+            }
+
+            if (anim.GetCurrentAnimatorStateInfo(0).IsTag("Hit") || anim.GetCurrentAnimatorStateInfo(0).IsTag("dead"))
             {
 
             }
@@ -332,5 +367,15 @@ public class Enemy: MonoBehaviour
         yield return new WaitForSeconds(1.2f);
         Instantiate(miniSlime, transform.position, transform.rotation);
         Destroy(this.gameObject);
+    }
+
+    //acrescenta a distancia do inimigo na lista a cada segundo
+    public IEnumerator DistanceCount()
+    {
+        deltaDistanceLock = true;
+        yield return new WaitForSeconds(1);
+        deltaDistance.Add(distance);
+        deltaDistanceLock = false;
+
     }
 }

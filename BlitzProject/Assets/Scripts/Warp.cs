@@ -18,6 +18,7 @@ public class Warp : MonoBehaviour {
 
     GameObject gm;
     GameObject h6;
+    GameObject knn;
 
     //usados para setup da dungeon
     public bool isActive;
@@ -35,6 +36,7 @@ public class Warp : MonoBehaviour {
 
         gm = GameObject.Find("Manager");
         h6 = GameObject.Find("H6");
+        knn = GameObject.Find("KnnWatcher");
     }
 	
 	// Update is called once per frame
@@ -48,8 +50,9 @@ public class Warp : MonoBehaviour {
 
         if(collision.gameObject.tag == "Player")
         {
+            
             // se nao existir um mapa de destino coloca um mapa de fimde curso
-            if(targetMap == null)
+            if (targetMap == null)
             {
                 map = collision.GetComponent<Player>().currentMap;
 
@@ -79,6 +82,13 @@ public class Warp : MonoBehaviour {
             }
             else
             {
+                //faz gravação do knn
+                if (collision.GetComponent<Player>().currentMap.GetComponent<MapConfig>().clear && collision.GetComponent<Player>().initialMap != collision.GetComponent<Player>().currentMap)
+                {
+                    knn.GetComponent<knnRecord>().knnAtivar = false;
+                    collision.GetComponent<Player>().recordKnn = true;
+                }
+
                 collision.GetComponent<Animator>().enabled = false;
                 collision.GetComponent<Player>().enabled = false;
                 FadeIn();
@@ -86,10 +96,18 @@ public class Warp : MonoBehaviour {
                 yield return new WaitForSeconds(fadeTime);
 
                 //indica pro mapa que ele esta ativo
-                if (targetMap.GetComponent<MapConfig>().active == false)
+                if (targetMap.GetComponent<MapConfig>().clear == false)
                 {
                     targetMap.GetComponent<MapConfig>().active = true;
+                    //if(targetMap.GetComponent<MapConfig>().clear == false)
+                    //{
+                        knn.GetComponent<knnRecord>().knnAtivar = true;
+                        knn.GetComponent<knnRecord>().activeTimer = true;
+                        knn.GetComponent<knnRecord>().blockKnn = false;
+                   // }
                 }
+
+                
 
                 collision.transform.position = target.transform.GetChild(0).transform.position;
                 h6.transform.position = collision.transform.position;
@@ -99,6 +117,9 @@ public class Warp : MonoBehaviour {
                 FadeOut();
                 collision.GetComponent<Animator>().enabled = true;
                 collision.GetComponent<Player>().enabled = true;
+
+                //habilita drop de arma no final da cada nova sala explorada
+                collision.GetComponent<Player>().prize = true;
 
             }
            

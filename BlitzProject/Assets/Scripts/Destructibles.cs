@@ -50,10 +50,10 @@ public class Destructibles : MonoBehaviour {
             }
 
             GetComponent<Destructibles>().enabled = false;
-            if (knn.GetComponent<knnRecord>().knnAtivar)
-            {
+            //if (knn.GetComponent<knnRecord>().knnAtivar)
+            //{
                 knn.GetComponent<knnRecord>().numberOfBoxes++;
-            }
+            //}
                 
         }
 

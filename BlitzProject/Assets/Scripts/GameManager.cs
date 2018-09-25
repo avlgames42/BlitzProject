@@ -24,6 +24,14 @@ public class GameManager : MonoBehaviour {
     public AudioClip boxBreakSound;
     public AudioClip healSound;
 
+
+
+    public List<GameObject> icons = new List<GameObject>();
+
+    //public Dictionary<string,GameObject> shootList = new Dictionary<string,GameObject>();
+    public List<GameObject> shootList = new List<GameObject>();
+
+
     // variaveis para controle de salas
 
     // Use this for initialization

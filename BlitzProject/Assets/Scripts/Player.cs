@@ -17,6 +17,7 @@ public class Player : MonoBehaviour {
     public GameObject currentMap;
 
     public GameObject aim;
+    public GameObject weapon;
     Vector2 aimDirection;
 
     public GameObject shoot;
@@ -31,7 +32,11 @@ public class Player : MonoBehaviour {
     public AudioClip hitSound;
     public AudioClip fireSound;
 
-    
+    public bool recordKnn = false;
+    public bool prize = true;
+
+    public int shootID = 0;
+
 
     //controle
     bool isAttacking = false;
@@ -52,14 +57,10 @@ public class Player : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
-       
-
-        if(initialMap.GetComponent<Transform>().GetChild(0).gameObject.GetComponent<Warp>().targetMap == null )
+        if (initialMap.GetComponent<Transform>().GetChild(0).gameObject.GetComponent<Warp>().targetMap == null )
         {
             SceneManager.LoadScene("Floor_1");
         }
-
-
 
         anim = GetComponent<Animator>();
 
@@ -69,6 +70,12 @@ public class Player : MonoBehaviour {
         hp = hpMax;
 
         gm = GameObject.Find("Manager");
+
+        shoot = gm.GetComponent<GameManager>().shootList[shootID];
+
+        //dataBase.Create();
+
+
     }
 	
 	// Update is called once per frame
@@ -96,6 +103,8 @@ public class Player : MonoBehaviour {
             if (hp <= 0)
             {
                 hp = 0;
+                knn.GetComponent<knnRecord>().knnAtivar = false;
+                recordKnn = true;
                 gm.SendMessage("showGameOver");
             }
 
@@ -111,7 +120,30 @@ public class Player : MonoBehaviour {
                 if (!isAttacking) fire();
             }
         }
-       
+
+        if (currentMap.GetComponent<MapConfig>().clear && initialMap != currentMap)
+        {
+            //knn.GetComponent<knnRecord>().knnAtivar = false;
+            //recordKnn = true;
+
+            if (prize && currentMap.GetComponent<MapConfig>().onTime)
+            {
+                int aux = Random.Range(0, (gm.GetComponent<GameManager>().icons.Count));
+                Instantiate(gm.GetComponent<GameManager>().icons[aux], currentMap.GetComponent<MapConfig>().enemySpot[aux].transform.position, currentMap.GetComponent<MapConfig>().enemySpot[aux].transform.rotation);
+                prize  = false;
+                currentMap.GetComponent<MapConfig>().onTime = false;
+            }
+
+
+        }
+
+
+    }
+
+    //desliga a gracação dos parametros do knn
+    public void StopRecordKnn()
+    {
+
     }
 
     void walk(Vector2 movement)
@@ -140,7 +172,7 @@ public class Player : MonoBehaviour {
     void fire()
     {
         StartCoroutine(attackDelay());
-        Instantiate(shoot, transform.position, transform.rotation);
+        Instantiate(shoot,transform.position,transform.rotation);
         GetComponent<AudioSource>().PlayOneShot(fireSound, musicControl.soundVolume);
         if (knn.GetComponent<knnRecord>().knnAtivar)
         {
