@@ -145,6 +145,11 @@ MonoBehaviour:
   breakSound: {fileID: 8300000, guid: 3d9f46a8bc3007143a65c96cad163754, type: 3}
   boxBreakSound: {fileID: 8300000, guid: cdaf506f82738864c97cd7248bfcc821, type: 3}
   healSound: {fileID: 8300000, guid: 9af0b82695dcb1f4f858b7631ba44a2c, type: 3}
+  icons:
+  - {fileID: 1113240395535984, guid: 0200e082e45b1a94bb696f69409f2a4b, type: 2}
+  - {fileID: 1084896750488180, guid: 25edf525ff52faf4681e07dd08521a8d, type: 2}
+  - {fileID: 1290133058890766, guid: 69a166fb0b22ee046b50ec0c9b66d657, type: 2}
   shootList:
   - {fileID: 1730183102585228, guid: 565c7c7b95970c545b2c1b5103a5451a, type: 2}
   - {fileID: 1525628700749660, guid: 5432bf17810b80444bfb1b422febc902, type: 2}
+  - {fileID: 1690438934121168, guid: 08c0764aa960578489f3011728caf664, type: 2}

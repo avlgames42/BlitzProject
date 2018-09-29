@@ -36,7 +36,7 @@ public class Player : MonoBehaviour {
     public bool prize = true;
 
     public int shootID = 0;
-
+    public int auxShootID = 0;
 
     //controle
     bool isAttacking = false;
@@ -172,8 +172,20 @@ public class Player : MonoBehaviour {
     void fire()
     {
         StartCoroutine(attackDelay());
-        Instantiate(shoot,transform.position,transform.rotation);
+
+        if (shoot.GetComponent<Shoot>().triple)
+        {
+            //zera o valor guia dos tiros auxiliares
+            auxShootID = 0;
+            Instantiate(shoot, transform.position, transform.rotation);
+        }
+        else
+        {
+            Instantiate(shoot, transform.position, transform.rotation);
+        }
+
         GetComponent<AudioSource>().PlayOneShot(fireSound, musicControl.soundVolume);
+
         if (knn.GetComponent<knnRecord>().knnAtivar)
         {
             knn.GetComponent<knnRecord>().numberOfShoots++;
