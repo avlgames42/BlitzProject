@@ -290,6 +290,13 @@ MonoBehaviour:
   hitSound: {fileID: 8300000, guid: b94c07deb6ddecc4696551a57305bae8, type: 3}
   fireSound: {fileID: 8300000, guid: d6b0954cc3ed2ac479aaf95b0873686f, type: 3}
   recordKnn: 0
+  prize: 1
+  shootID: 0
+  auxShootID: 0
+  xp: 400
+  skillEquiped: {fileID: 0}
+  skillIcon: {fileID: 0}
+  iconShoot: {fileID: 0}
 --- !u!212 &212148340281029144
 SpriteRenderer:
   m_ObjectHideFlags: 1

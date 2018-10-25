@@ -26,6 +26,8 @@ public class Shoot : MonoBehaviour {
     public GameObject auxShoot;
     public GameObject auxShoot_1;
 
+    public Sprite iconUI;
+
     // Use this for initialization
     void Start () {
         //transform.eulerAngles = new Vector3(transform.rotation.x, transform.rotation.y, 45);

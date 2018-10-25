@@ -41,10 +41,17 @@ public class Player : MonoBehaviour {
     //controle
     bool isAttacking = false;
 
-    int xp = 0;
+    public int xp = 400;
 
     GameObject gm;
     GameObject knn;
+
+    public GameObject skillEquiped;
+    public GameObject skillIcon;
+    public GameObject iconShoot;
+
+    float skillTimer = 0;
+    float auxTimer = 0;
 
     private void Awake()
     {
@@ -80,6 +87,16 @@ public class Player : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+        //atualiza o icone do tiro selecionado
+        iconShoot.GetComponent<Image>().sprite = shoot.GetComponent<Shoot>().iconUI;
+
+        if(skillEquiped != null)
+        {
+            skillIcon.GetComponent<Image>().sprite = skillEquiped.GetComponent<Skill>().icon;
+            skillIcon.GetComponent<Image>().fillAmount = 1;
+        }
+
         if (gm.GetComponent<GameManager>().gameState.Equals("play"))
         {
             //pause 
@@ -119,6 +136,33 @@ public class Player : MonoBehaviour {
             {
                 if (!isAttacking) fire();
             }
+
+            //utiliza skill
+            if(Input.GetAxisRaw("RT") != 0)
+            {
+                UseSkill();
+            }
+
+            //verifica status da skill para iniciar cooldown
+            if(skillEquiped != null)
+            {
+                if (skillEquiped.GetComponent<Skill>().ready == false)
+                {
+                    skillTimer += Time.deltaTime;
+                    auxTimer = skillTimer / skillEquiped.GetComponent<Skill>().rechargeTime;
+                    skillIcon.GetComponent<Image>().fillAmount = auxTimer;
+                    if (skillTimer >= skillEquiped.GetComponent<Skill>().rechargeTime)
+                    {
+                        skillTimer = 0;
+                        skillEquiped.GetComponent<Skill>().ready = true;
+                    }
+                }
+                else
+                {
+                    skillIcon.GetComponent<Image>().fillAmount = 1;
+                }
+            }
+
         }
 
         if (currentMap.GetComponent<MapConfig>().clear && initialMap != currentMap)
@@ -144,6 +188,39 @@ public class Player : MonoBehaviour {
     public void StopRecordKnn()
     {
 
+    }
+
+    public void UseSkill()
+    {
+        //se a skill estiver equipada e pronta
+        if(skillEquiped != null)
+        {
+            if (skillEquiped.GetComponent<Skill>().ready)
+            {
+                switch (skillEquiped.GetComponent<Skill>().effect)
+                {
+                    case "Restaurar":
+                        hp += (4 * skillEquiped.GetComponent<Skill>().effectPower);
+                        skillEquiped.GetComponent<Skill>().ready = false;
+                        break;
+
+                    case "Drenar":
+                        break;
+
+                    case "Clone":
+                        break;
+
+                    case "Escudo":
+                        break;
+
+                    case "ArmadilhaDeFogo":
+                        break;
+
+                    case "OndaDeChoque":
+                        break;
+                }
+            }
+        }
     }
 
     void walk(Vector2 movement)
@@ -192,6 +269,11 @@ public class Player : MonoBehaviour {
 
         }
             
+    }
+    IEnumerator SkillCoolDown()
+    {
+        yield return new WaitForSeconds(skillEquiped.GetComponent<Skill>().rechargeTime);
+        skillEquiped.GetComponent<Skill>().ready = true;
     }
 
     IEnumerator attackDelay()

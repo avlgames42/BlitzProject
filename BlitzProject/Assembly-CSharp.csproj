@@ -83,6 +83,7 @@
      <Compile Include="Assets\Scripts\ReadFile.cs" />
      <Compile Include="Assets\Scripts\Shoot.cs" />
      <Compile Include="Assets\Scripts\ShootTorreta.cs" />
+     <Compile Include="Assets\Scripts\Skill.cs" />
      <Compile Include="Assets\Scripts\Spikes.cs" />
      <Compile Include="Assets\Scripts\Spot.cs" />
      <Compile Include="Assets\Scripts\teste\rotacao.cs" />
