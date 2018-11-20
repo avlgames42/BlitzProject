@@ -14,10 +14,13 @@ public class Skill : MonoBehaviour {
     public string info;
     public bool ready = true;
     public Sprite icon;
+    public float hp;
+    public GameObject fire;
+    public int id;
 
 	// Use this for initialization
 	void Start () {
-
+        hp = effectPower;
 	}
 	
 	// Update is called once per frame

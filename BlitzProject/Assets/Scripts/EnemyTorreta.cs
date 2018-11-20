@@ -22,9 +22,10 @@ public class EnemyTorreta : MonoBehaviour {
     float attackDamage = 1;
 
     bool isAttack = false;
-    bool isActive = false;
+    public bool isActive = false;
     bool dead = false;
-    bool ready = false;
+    public bool ready = false;
+    public bool stun = false;
 
     RaycastHit2D hit;
 
@@ -53,7 +54,8 @@ public class EnemyTorreta : MonoBehaviour {
 
         if (gm.GetComponent<GameManager>().gameState.Equals("play"))
         {
-            if (isActive && ready)
+            player = GameObject.FindGameObjectWithTag("Player");
+            if (isActive && ready && !stun)
             {
                 if (knn.GetComponent<knnRecord>().knnAtivar)
                 {
@@ -168,6 +170,11 @@ public class EnemyTorreta : MonoBehaviour {
                 collision.GetComponent<Shoot>().direction = new Vector3(0, 0, 0);
                 takeDamage(collision.GetComponent<Shoot>().damage);
                 collision.GetComponent<Animator>().SetTrigger("collision");
+                if(player.GetComponent<Player>().skillEquiped.GetComponent<Skill>().effect.Equals("Drenar") && player.GetComponent<Player>().skillEquiped.GetComponent<Skill>().active)
+                {
+                    //player.gameObject.SendMessage("gainHP", collision.GetComponent<Shoot>().damage);
+                    player.GetComponent<Player>().gainHp(collision.GetComponent<Shoot>().damage);
+                }
             }
 
         }

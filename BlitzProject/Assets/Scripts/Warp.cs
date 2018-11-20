@@ -48,7 +48,7 @@ public class Warp : MonoBehaviour {
     {
         GameObject map;
 
-        if(collision.gameObject.tag == "Player")
+        if(collision.gameObject.tag == "Player" || collision.gameObject.tag == "Clone")
         {
             
             // se nao existir um mapa de destino coloca um mapa de fimde curso
@@ -82,7 +82,7 @@ public class Warp : MonoBehaviour {
             }
             else
             {
-                //faz gravação do knn
+                //faz gravação do knn, para a quisiçao
                 if (collision.GetComponent<Player>().currentMap.GetComponent<MapConfig>().clear && collision.GetComponent<Player>().initialMap != collision.GetComponent<Player>().currentMap)
                 {
                     knn.GetComponent<knnRecord>().knnAtivar = false;
@@ -101,6 +101,7 @@ public class Warp : MonoBehaviour {
                     targetMap.GetComponent<MapConfig>().active = true;
                     //if(targetMap.GetComponent<MapConfig>().clear == false)
                     //{
+                    //Ativa a gravaçao do knn
                         knn.GetComponent<knnRecord>().knnAtivar = true;
                         knn.GetComponent<knnRecord>().activeTimer = true;
                         knn.GetComponent<knnRecord>().blockKnn = false;

@@ -11,6 +11,8 @@ public class knnRecord : MonoBehaviour {
     public int heal;        //player
     public int seconds;     //mapConfig
     public int distance; // enemys
+    public int firstSkill;
+    public int mostUsedSkill;
     public List<float> distanceOfEnemys = new List<float>();
     public int distanceInRoom;
     public float distanceAux;
@@ -20,7 +22,7 @@ public class knnRecord : MonoBehaviour {
     public bool activeTimer = false;
     public bool blockKnn = false;
 
-    float[] knn = new float[9];
+    float[] knn = new float[10];
 
     GameObject obj;
 
@@ -41,9 +43,11 @@ public class knnRecord : MonoBehaviour {
 	void Update () {
 
         knn[2] = numberOfBoxes;
+        knn[9] = firstSkill;
+        
 
         //salva os valores quando a porta da sala abre
-        if (knnAtivar)
+        if (knnAtivar) //ligado no warp
         {
             knn[0] = numberOfShoots;
             knn[1] = numberOfHits;
@@ -78,7 +82,12 @@ public class knnRecord : MonoBehaviour {
 
                 //calcula porcentagem de energia coletada
                 aux = (collectedEnergy * 100f) / totalEnergy;
+                if (aux > 100) aux = 100;
                 knn[7] = aux;
+
+                //int skillAux = obj.GetComponent<Player>().arrayMostUsedSkill[0];
+                //for (int i = 0 ; i< obj.GetComponent<Player>().arrayMostUsedSkill.Length ; i++)
+
 
                 //salva arma usada durante a sala
                 

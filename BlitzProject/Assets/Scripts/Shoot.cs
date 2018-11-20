@@ -108,6 +108,10 @@ public class Shoot : MonoBehaviour {
         {
 
         }
+        else if (collision.tag == "Clone")
+        {
+
+        }
         else
         {
             direction = new Vector3(0, 0, 0);

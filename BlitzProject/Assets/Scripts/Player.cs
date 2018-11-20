@@ -41,7 +41,7 @@ public class Player : MonoBehaviour {
     //controle
     bool isAttacking = false;
 
-    public int xp = 400;
+    public int xp = 0;
 
     GameObject gm;
     GameObject knn;
@@ -53,6 +53,12 @@ public class Player : MonoBehaviour {
     float skillTimer = 0;
     float auxTimer = 0;
 
+    public GameObject clone;
+
+    public int[] arrayMostUsedSkill = new int[7];
+    int mostUsedSkill;
+
+
     private void Awake()
     {
         //Assert.IsNotNull(initialMap);
@@ -63,6 +69,11 @@ public class Player : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+
+        for(int i=0;i <arrayMostUsedSkill.Length; i++)
+        {
+            arrayMostUsedSkill[i] = 0;
+        }
 
         if (initialMap.GetComponent<Transform>().GetChild(0).gameObject.GetComponent<Warp>().targetMap == null )
         {
@@ -200,23 +211,60 @@ public class Player : MonoBehaviour {
                 switch (skillEquiped.GetComponent<Skill>().effect)
                 {
                     case "Restaurar":
-                        hp += (4 * skillEquiped.GetComponent<Skill>().effectPower);
+                        hp += (skillEquiped.GetComponent<Skill>().effectPower);
                         skillEquiped.GetComponent<Skill>().ready = false;
+                        arrayMostUsedSkill[skillEquiped.GetComponent<Skill>().id]++;
                         break;
 
                     case "Drenar":
+                        skillEquiped.GetComponent<Skill>().ready = false;
+                        skillEquiped.GetComponent<Skill>().active = true;
+                        StartCoroutine(skillTime());
+                        arrayMostUsedSkill[skillEquiped.GetComponent<Skill>().id]++;
                         break;
 
                     case "Clone":
+                        Instantiate(clone, transform.position, transform.rotation);
+                        this.transform.tag = "Clone";
+                        skillEquiped.GetComponent<Skill>().ready = false;
+                        StartCoroutine(skillTime());
+                        arrayMostUsedSkill[skillEquiped.GetComponent<Skill>().id]++;
                         break;
 
                     case "Escudo":
+                        skillEquiped.GetComponent<Skill>().ready = false;
+                        skillEquiped.GetComponent<Skill>().active = true;
+                        arrayMostUsedSkill[skillEquiped.GetComponent<Skill>().id]++;
                         break;
 
                     case "ArmadilhaDeFogo":
+                        skillEquiped.GetComponent<Skill>().ready = false;
+                        skillEquiped.GetComponent<Skill>().active = true;
+                        StartCoroutine(skillTime());
+                        Instantiate(skillEquiped.GetComponent<Skill>().fire, transform.position, transform.rotation);
+                        arrayMostUsedSkill[skillEquiped.GetComponent<Skill>().id]++;
                         break;
 
                     case "OndaDeChoque":
+                        skillEquiped.GetComponent<Skill>().ready = false;
+                        foreach(GameObject obj in GameObject.FindGameObjectsWithTag("Destructibles"))
+                        {
+                            if (obj.GetComponent<Destructibles>().active)
+                            {
+                                obj.GetComponent<Destructibles>().LoseHp();
+                            }
+                        }
+
+                        foreach(GameObject obj in GameObject.FindGameObjectsWithTag("Enemy"))
+                        {
+                            if(obj.GetComponent<Enemy>().isActive)
+                            {
+                                obj.GetComponent<Enemy>().stun = true;
+                            }
+
+                        }
+                        StartCoroutine(RemoveStun());
+                        arrayMostUsedSkill[skillEquiped.GetComponent<Skill>().id]++;
                         break;
                 }
             }
@@ -270,6 +318,20 @@ public class Player : MonoBehaviour {
         }
             
     }
+
+    //contagem do tempo dos efeitos das skills
+    IEnumerator skillTime()
+    {
+        yield return new WaitForSeconds(skillEquiped.GetComponent<Skill>().effectTime);
+        if (skillEquiped.GetComponent<Skill>().effect.Equals("Clone"))
+        {
+            this.transform.tag = "Player";
+            Destroy(GameObject.Find("Clone(Clone)").gameObject);
+        }
+        skillEquiped.GetComponent<Skill>().active = false;
+
+    }
+
     IEnumerator SkillCoolDown()
     {
         yield return new WaitForSeconds(skillEquiped.GetComponent<Skill>().rechargeTime);
@@ -285,12 +347,28 @@ public class Player : MonoBehaviour {
 
     public void takeDamage(float damage)
     {
-        hp -= damage;
-        GetComponent<AudioSource>().PlayOneShot(hitSound, musicControl.soundVolume);
-        if (knn.GetComponent<knnRecord>().knnAtivar)
+        if(skillEquiped != null)
         {
-            knn.GetComponent<knnRecord>().hpLost += Mathf.RoundToInt(damage);
+            if (skillEquiped.GetComponent<Skill>().effect.Equals("Escudo") && skillEquiped.GetComponent<Skill>().active)
+            {
+                skillEquiped.GetComponent<Skill>().hp -= damage;
+                if (skillEquiped.GetComponent<Skill>().hp <= 0)
+                {
+                    skillEquiped.GetComponent<Skill>().active = false;
+                    skillEquiped.GetComponent<Skill>().hp = skillEquiped.GetComponent<Skill>().effectPower;
+                }
+            }
         }
+        else
+        {
+            hp -= damage;
+            GetComponent<AudioSource>().PlayOneShot(hitSound, musicControl.soundVolume);
+            if (knn.GetComponent<knnRecord>().knnAtivar)
+            {
+                knn.GetComponent<knnRecord>().hpLost += Mathf.RoundToInt(damage);
+            }
+        }
+
         
     }
 
@@ -307,5 +385,18 @@ public class Player : MonoBehaviour {
     public void getEnergy(int energy)
     {
         xp += energy;
+    }
+
+    IEnumerator RemoveStun()
+    {
+        yield return new WaitForSeconds(skillEquiped.GetComponent<Skill>().effectTime);
+        foreach (GameObject obj in GameObject.FindGameObjectsWithTag("Enemy"))
+        {
+            if (obj.GetComponent<Enemy>().isActive)
+            {
+                obj.GetComponent<Enemy>().stun = false;
+            }
+
+        }
     }
 }

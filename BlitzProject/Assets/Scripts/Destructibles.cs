@@ -9,9 +9,12 @@ public class Destructibles : MonoBehaviour {
     public GameObject potion;
     public bool box;
     int aux;
+    float hp = 2;
 
     GameObject gm;
     GameObject knn;
+
+    public bool active = false;
 	// Use this for initialization
 	void Start () {
         anim = GetComponent<Animator>();
@@ -22,7 +25,7 @@ public class Destructibles : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if (anim.GetCurrentAnimatorStateInfo(0).IsTag("end"))
+        if (anim.GetCurrentAnimatorStateInfo(0).IsTag("end") || hp <= 0)
         {
             if (!box)
             {
@@ -60,10 +63,25 @@ public class Destructibles : MonoBehaviour {
 
 	}
 
+    public void LoseHp()
+    {
+        hp -= 1;
+        anim.SetTrigger("hit");
+        if (box)
+        {
+            gm.SendMessage("BoxBreakSound");
+        }
+        else
+        {
+            gm.SendMessage("JarBreakSound");
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Attack")
         {
+            hp -= 1;
             anim.SetTrigger("hit");
             if (box)
             {
@@ -74,5 +92,14 @@ public class Destructibles : MonoBehaviour {
                 gm.SendMessage("JarBreakSound");
             }
         }
+    }
+
+    private void OnBecameVisible()
+    {
+        active = true;
+    }
+    private void OnBecameInvisible()
+    {
+        active = false;
     }
 }

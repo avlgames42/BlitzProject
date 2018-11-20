@@ -36,8 +36,9 @@ public class Enemy: MonoBehaviour
 
     public float attackDelay;
     bool isAttack = false;
-    bool isActive = false;
-    bool ready = false;
+    public bool isActive = false;
+    public bool ready = false;
+    public bool stun = false;
 
     public List<AudioClip> hitSound = new List<AudioClip>();
 
@@ -74,6 +75,7 @@ public class Enemy: MonoBehaviour
     {
         if (gm.GetComponent<GameManager>().gameState.Equals("play"))
         {
+            player = GameObject.FindGameObjectWithTag("Player");
             if (isActive && ready)
             {
                 //chama contagem da distance entre inimigo e jogador
@@ -130,13 +132,25 @@ public class Enemy: MonoBehaviour
                 // se a distancia for menor que a de ataque , ataca o target
                 if (target != initialPosition && distance < AttackRadius)
                 {
-                    if (!isAttack && !anim.GetCurrentAnimatorStateInfo(0).IsTag("dead")) attack();
+                    if (!isAttack && !anim.GetCurrentAnimatorStateInfo(0).IsTag("dead"))
+                    {
+                        if (!stun)
+                        {
+                            attack();
+                        }
+                        
+                    }
+
                 }
                 else
                 {
                     if (!isAttack)
                     {
-                        walk();
+                        if (!stun)
+                        {
+                            walk();
+                        }
+                        
                     }
 
                 }
@@ -254,9 +268,9 @@ public class Enemy: MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "Player")
+        if (collision.tag == "Player")
         {
-            if(collision.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsTag("hit"))
+            if (collision.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsTag("hit"))
             {
 
             }
@@ -265,7 +279,7 @@ public class Enemy: MonoBehaviour
                 collision.SendMessage("takeDamage", attackDamage);
                 collision.GetComponent<Animator>().SetTrigger("hit");
             }
-            
+
         }
         else if (collision.tag == "Attack")
         {
@@ -290,9 +304,9 @@ public class Enemy: MonoBehaviour
                     transform.localScale = new Vector3(1, transform.localScale.y, transform.localScale.z);
                 }
 
-                if(berserk)
+                if (berserk)
                 {
-                    
+
                 }
                 else
                 {
@@ -302,8 +316,51 @@ public class Enemy: MonoBehaviour
                 collision.GetComponent<Shoot>().direction = new Vector3(0, 0, 0);
                 takeDamage(collision.GetComponent<Shoot>().damage);
                 collision.GetComponent<Animator>().SetTrigger("collision");
+                if (player.GetComponent<Player>().skillEquiped != null)
+                {
+                    if (player.GetComponent<Player>().skillEquiped.GetComponent<Skill>().effect.Equals("Drenar") && player.GetComponent<Player>().skillEquiped.GetComponent<Skill>().active)
+                    {
+                        //player.gameObject.SendMessage("gainHP", collision.GetComponent<Shoot>().damage);
+                        player.GetComponent<Player>().gainHp(collision.GetComponent<Shoot>().damage);
+                    }
+                }
+
             }
-            
+
+        }
+        else if (collision.tag == "Trap")
+        {
+            collision.GetComponent<FireTrap>().Kabum();
+        }
+        else if (collision.tag == "Fire")
+        {
+            if (anim.GetCurrentAnimatorStateInfo(0).IsTag("Hit") || anim.GetCurrentAnimatorStateInfo(0).IsTag("dead"))
+            {
+
+            }
+            else
+            {
+                //flip o sprite para esquerda para ajusta a animaçao
+                if (direction.x < 0)
+                {
+                    transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
+                }
+                else
+                {
+                    transform.localScale = new Vector3(1, transform.localScale.y, transform.localScale.z);
+                }
+
+                if (berserk)
+                {
+
+                }
+                else
+                {
+                    speed = 0;
+                }
+                anim.SetTrigger("hit");
+                takeDamage(player.GetComponent<Player>().skillEquiped.GetComponent<Skill>().effectPower);
+            }
         }
     }
 

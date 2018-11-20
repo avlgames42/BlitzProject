@@ -8,15 +8,15 @@ Prefab:
     m_TransformParent: {fileID: 0}
     m_Modifications: []
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 0}
+  m_SourcePrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1992480153363724}
-  m_IsPrefabParent: 1
+  m_IsPrefabAsset: 1
 --- !u!1 &1992480153363724
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 4955657273702662}
   - component: {fileID: 114716202002276346}
@@ -30,11 +30,11 @@ GameObject:
 --- !u!4 &4955657273702662
 Transform:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1992480153363724}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -26.793816, y: -108.392586, z: 0.02749507}
+  m_LocalPosition: {x: -25.712585, y: -108.9566, z: 0.02749507}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -43,7 +43,7 @@ Transform:
 --- !u!114 &114716202002276346
 MonoBehaviour:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1992480153363724}
   m_Enabled: 1
@@ -51,11 +51,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf8b0305c158f914f9f8b34bf5625bca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rechargeTime: 13
-  active: 0
+  rechargeTime: 60
+  active: 1
   cost: 25
   effect: Escudo
   effectTime: 5
-  effectPower: 1
+  effectPower: 2
   purchased: 0
-  info: EscudoEscudoEscudoEscudoEscudoEscudoEscudoEscudo
+  info: Cria uma barreira de energia que protege de armadilhas e ataques inimigos.
+  ready: 1
+  icon: {fileID: 21300004, guid: 4314d4bf7666e5d45a7b11c11a6d0402, type: 3}
+  hp: 1
+  fire: {fileID: 0}
+  id: 4

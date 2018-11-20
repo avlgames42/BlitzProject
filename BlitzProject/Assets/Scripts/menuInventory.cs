@@ -15,17 +15,22 @@ public class menuInventory : MonoBehaviour {
     public GameObject auxSkill;
     GameObject gm;
     GameObject player;
+    GameObject knn;
     public GameObject seletor;
     public GameObject skillInfo;
     public GameObject skillName;
     public GameObject skillCost;
+    public GameObject skillPower;
+    public GameObject skillTime;
     public GameObject buyConfirm;
     public GameObject xp;
     public string status = "principal";
     public bool travaParaNaoBugarcompra = true;
+    bool firstBuy = true;
 
     // Use this for initialization
     void Start () {
+        knn = GameObject.Find("KnnWatcher");
         gm = GameObject.Find("Manager");
         list.SetActive(false);
         player = GameObject.Find("Blitz");
@@ -83,6 +88,8 @@ public class menuInventory : MonoBehaviour {
             {
                 skillName.GetComponent<Text>().text = gm.GetComponent<GameManager>().skillList[indice].GetComponent<Transform>().name;
                 skillInfo.GetComponent<Text>().text = gm.GetComponent<GameManager>().skillList[indice].GetComponent<Skill>().info;
+                skillPower.GetComponent<Text>().text = "Poder: " + gm.GetComponent<GameManager>().skillList[indice].GetComponent<Skill>().effectPower.ToString();
+                skillTime.GetComponent<Text>().text = "Tempo: " + gm.GetComponent<GameManager>().skillList[indice].GetComponent<Skill>().effectTime.ToString();
                 if (gm.GetComponent<GameManager>().skillList[indice].GetComponent<Skill>().purchased == true)
                 {
                     skillCost.GetComponent<Text>().text = "Comprado";
@@ -120,16 +127,37 @@ public class menuInventory : MonoBehaviour {
             //equipa skill
             if (Input.GetButtonDown("A") && indice == 0)
             {
-                if (gm.GetComponent<GameManager>().skillList[skillIndice].GetComponent<Skill>().purchased == true)
+                if (firstBuy)
                 {
-                    player.GetComponent<Player>().skillEquiped = gm.GetComponent<GameManager>().skillList[skillIndice].gameObject;
-                    //muda cor da skill equipada
-                    for(int i=0; i < auxSkill.transform.childCount; i++)
+                    if (gm.GetComponent<GameManager>().skillList[skillIndice].GetComponent<Skill>().purchased == true)
                     {
-                        auxSkill.transform.GetChild(i).GetComponent<Text>().color = Color.white;
+                        player.GetComponent<Player>().skillEquiped = gm.GetComponent<GameManager>().skillList[skillIndice].gameObject;
+                        firstBuy = false;
+                        //muda cor da skill equipada
+                        for (int i = 0; i < auxSkill.transform.childCount; i++)
+                        {
+                            auxSkill.transform.GetChild(i).GetComponent<Text>().color = Color.white;
+                        }
+                        auxSkill.transform.GetChild(skillIndice).GetComponent<Text>().color = Color.yellow;
+                        player.GetComponent<Player>().skillEquiped.GetComponent<Skill>().ready = true;
+                        knn.GetComponent<knnRecord>().firstSkill = player.GetComponent<Player>().skillEquiped.GetComponent<Skill>().id;
                     }
-                    auxSkill.transform.GetChild(skillIndice).GetComponent<Text>().color = Color.yellow;
                 }
+                else
+                {
+                    if (gm.GetComponent<GameManager>().skillList[skillIndice].GetComponent<Skill>().purchased == true && player.GetComponent<Player>().skillEquiped.GetComponent<Skill>().ready)
+                    {
+                        player.GetComponent<Player>().skillEquiped = gm.GetComponent<GameManager>().skillList[skillIndice].gameObject;
+                        //muda cor da skill equipada
+                        for (int i = 0; i < auxSkill.transform.childCount; i++)
+                        {
+                            auxSkill.transform.GetChild(i).GetComponent<Text>().color = Color.white;
+                        }
+                        auxSkill.transform.GetChild(skillIndice).GetComponent<Text>().color = Color.yellow;
+                        player.GetComponent<Player>().skillEquiped.GetComponent<Skill>().ready = true;
+                    }
+                }
+
             }
 
 
