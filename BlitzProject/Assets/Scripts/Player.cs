@@ -357,19 +357,16 @@ public class Player : MonoBehaviour {
                     skillEquiped.GetComponent<Skill>().active = false;
                     skillEquiped.GetComponent<Skill>().hp = skillEquiped.GetComponent<Skill>().effectPower;
                 }
-            }
-        }
-        else
-        {
-            hp -= damage;
-            GetComponent<AudioSource>().PlayOneShot(hitSound, musicControl.soundVolume);
-            if (knn.GetComponent<knnRecord>().knnAtivar)
-            {
-                knn.GetComponent<knnRecord>().hpLost += Mathf.RoundToInt(damage);
+                return;
             }
         }
 
-        
+        hp -= damage;
+        GetComponent<AudioSource>().PlayOneShot(hitSound, musicControl.soundVolume);
+        if (knn.GetComponent<knnRecord>().knnAtivar)
+        {
+            knn.GetComponent<knnRecord>().hpLost += Mathf.RoundToInt(damage);
+        }
     }
 
     public void gainHp(float heal)

@@ -170,11 +170,15 @@ public class EnemyTorreta : MonoBehaviour {
                 collision.GetComponent<Shoot>().direction = new Vector3(0, 0, 0);
                 takeDamage(collision.GetComponent<Shoot>().damage);
                 collision.GetComponent<Animator>().SetTrigger("collision");
-                if(player.GetComponent<Player>().skillEquiped.GetComponent<Skill>().effect.Equals("Drenar") && player.GetComponent<Player>().skillEquiped.GetComponent<Skill>().active)
+                if (player.GetComponent<Player>().skillEquiped != null)
                 {
-                    //player.gameObject.SendMessage("gainHP", collision.GetComponent<Shoot>().damage);
-                    player.GetComponent<Player>().gainHp(collision.GetComponent<Shoot>().damage);
+                    if (player.GetComponent<Player>().skillEquiped.GetComponent<Skill>().effect.Equals("Drenar") && player.GetComponent<Player>().skillEquiped.GetComponent<Skill>().active)
+                    {
+                        //player.gameObject.SendMessage("gainHP", collision.GetComponent<Shoot>().damage);
+                        player.GetComponent<Player>().gainHp(collision.GetComponent<Shoot>().damage);
+                    }
                 }
+
             }
 
         }
