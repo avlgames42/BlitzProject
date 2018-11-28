@@ -57,11 +57,13 @@ MonoBehaviour:
   effect: OndaDeChoque
   effectTime: 2
   effectPower: 1
-  purchased: 1
+  purchased: 0
   info: Cria uma forte pressao de ar causand dano em todos objetos do cenario dentro
     do campo de visao e deixando os inimigos atordoatos por um instante.
-  ready: 1
+  ready: 0
   icon: {fileID: 21300000, guid: dfd11ab3436cf2d4bb06435572b2b1a1, type: 3}
   hp: 0
   fire: {fileID: 0}
   id: 6
+  visualEffect: {fileID: 0}
+  soundEffect: {fileID: 8300000, guid: 23b75a59a9c87cd4eaf6b62652f8baf6, type: 3}

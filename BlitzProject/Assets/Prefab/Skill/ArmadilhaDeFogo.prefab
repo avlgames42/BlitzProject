@@ -57,10 +57,12 @@ MonoBehaviour:
   effect: ArmadilhaDeFogo
   effectTime: 2
   effectPower: 1
-  purchased: 0
+  purchased: 1
   info: Armadilha que explo liberando chamas quando um inimigo se aproxima.
   ready: 0
   icon: {fileID: 21300004, guid: ca9dddc7b8ba49b4391b567cfb03f655, type: 3}
   hp: 0
   fire: {fileID: 1538005587220370, guid: 10498d8b3e7a79343aad8710782592b8, type: 2}
   id: 5
+  visualEffect: {fileID: 0}
+  soundEffect: {fileID: 8300000, guid: ae8b79ee3a1f7b64cb860b3b062fab7b, type: 3}

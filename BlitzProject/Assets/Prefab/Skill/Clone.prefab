@@ -60,8 +60,10 @@ MonoBehaviour:
   purchased: 0
   info: Projeta uma imagem que atrae e confunde os inimigos por um curto periodo de
     tempo.
-  ready: 1
+  ready: 0
   icon: {fileID: 21300000, guid: 298f3861eb76b9844ba8c84be3062c66, type: 3}
   hp: 0
   fire: {fileID: 0}
   id: 3
+  visualEffect: {fileID: 0}
+  soundEffect: {fileID: 8300000, guid: 4b27932b00206614d95d25debafe4467, type: 3}

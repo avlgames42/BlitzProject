@@ -87,6 +87,7 @@
      <Compile Include="Assets\Scripts\Shoot.cs" />
      <Compile Include="Assets\Scripts\ShootTorreta.cs" />
      <Compile Include="Assets\Scripts\Skill.cs" />
+     <Compile Include="Assets\Scripts\SkillEffectBase.cs" />
      <Compile Include="Assets\Scripts\Spikes.cs" />
      <Compile Include="Assets\Scripts\Spot.cs" />
      <Compile Include="Assets\Scripts\teste\rotacao.cs" />
@@ -163,6 +164,7 @@
      <None Include="Assets\Tiled2Unity\Imported\blitzTeste_5.tiled2unity.xml" />
      <None Include="Assets\Tiled2Unity\Imported\mapas_17.tiled2unity.xml" />
      <None Include="Assets\Tiled2Unity\Imported\mapas_12.tiled2unity.xml" />
+     <None Include="Assets\knn.txt" />
      <None Include="Assets\Tiled2Unity\License.txt" />
      <None Include="Assets\Tiled2Unity\Imported\mapas_3.tiled2unity.xml" />
      <None Include="Assets\Tiled2Unity\Imported\mapas_1.tiled2unity.xml" />

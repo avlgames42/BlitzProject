@@ -49,6 +49,7 @@ public class Player : MonoBehaviour {
     public GameObject skillEquiped;
     public GameObject skillIcon;
     public GameObject iconShoot;
+    public GameObject skillActiveInfo;
 
     float skillTimer = 0;
     float auxTimer = 0;
@@ -93,6 +94,7 @@ public class Player : MonoBehaviour {
 
         //dataBase.Create();
 
+        skillActiveInfo.SetActive(false);
 
     }
 	
@@ -213,7 +215,9 @@ public class Player : MonoBehaviour {
                     case "Restaurar":
                         hp += (skillEquiped.GetComponent<Skill>().effectPower);
                         skillEquiped.GetComponent<Skill>().ready = false;
+                        Instantiate(skillEquiped.GetComponent<Skill>().visualEffect, transform.position, transform.rotation);
                         arrayMostUsedSkill[skillEquiped.GetComponent<Skill>().id]++;
+                        GetComponent<AudioSource>().PlayOneShot(skillEquiped.GetComponent<Skill>().soundEffect, musicControl.soundVolume);
                         break;
 
                     case "Drenar":
@@ -221,6 +225,8 @@ public class Player : MonoBehaviour {
                         skillEquiped.GetComponent<Skill>().active = true;
                         StartCoroutine(skillTime());
                         arrayMostUsedSkill[skillEquiped.GetComponent<Skill>().id]++;
+                        GetComponent<AudioSource>().PlayOneShot(skillEquiped.GetComponent<Skill>().soundEffect, musicControl.soundVolume);
+                        skillActiveInfo.SetActive(true);
                         break;
 
                     case "Clone":
@@ -229,12 +235,16 @@ public class Player : MonoBehaviour {
                         skillEquiped.GetComponent<Skill>().ready = false;
                         StartCoroutine(skillTime());
                         arrayMostUsedSkill[skillEquiped.GetComponent<Skill>().id]++;
+                        GetComponent<AudioSource>().PlayOneShot(skillEquiped.GetComponent<Skill>().soundEffect, musicControl.soundVolume);
+                        skillActiveInfo.SetActive(true);
                         break;
 
                     case "Escudo":
                         skillEquiped.GetComponent<Skill>().ready = false;
                         skillEquiped.GetComponent<Skill>().active = true;
+                        Instantiate(skillEquiped.GetComponent<Skill>().visualEffect, transform.position, transform.rotation);
                         arrayMostUsedSkill[skillEquiped.GetComponent<Skill>().id]++;
+                        GetComponent<AudioSource>().PlayOneShot(skillEquiped.GetComponent<Skill>().soundEffect, musicControl.soundVolume);
                         break;
 
                     case "ArmadilhaDeFogo":
@@ -265,8 +275,9 @@ public class Player : MonoBehaviour {
                         }
                         StartCoroutine(RemoveStun());
                         arrayMostUsedSkill[skillEquiped.GetComponent<Skill>().id]++;
+                        GetComponent<AudioSource>().PlayOneShot(skillEquiped.GetComponent<Skill>().soundEffect, musicControl.soundVolume);
                         break;
-                }
+                }      
             }
         }
     }
@@ -322,6 +333,7 @@ public class Player : MonoBehaviour {
     //contagem do tempo dos efeitos das skills
     IEnumerator skillTime()
     {
+        skillActiveInfo.GetComponent<Image>().sprite = skillEquiped.GetComponent<Skill>().icon;
         yield return new WaitForSeconds(skillEquiped.GetComponent<Skill>().effectTime);
         if (skillEquiped.GetComponent<Skill>().effect.Equals("Clone"))
         {
@@ -329,6 +341,7 @@ public class Player : MonoBehaviour {
             Destroy(GameObject.Find("Clone(Clone)").gameObject);
         }
         skillEquiped.GetComponent<Skill>().active = false;
+        skillActiveInfo.SetActive(false);
 
     }
 
@@ -356,6 +369,9 @@ public class Player : MonoBehaviour {
                 {
                     skillEquiped.GetComponent<Skill>().active = false;
                     skillEquiped.GetComponent<Skill>().hp = skillEquiped.GetComponent<Skill>().effectPower;
+                    GameObject shield;
+                    shield = GameObject.FindGameObjectWithTag("Shield");
+                    shield.GetComponent<Animator>().SetTrigger("broken");
                 }
                 return;
             }

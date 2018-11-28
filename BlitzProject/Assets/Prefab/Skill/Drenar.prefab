@@ -60,8 +60,10 @@ MonoBehaviour:
   purchased: 0
   info: Por um intervalo de tempo restaura HP igual a quantidade de dano causado pelos
     tiros.
-  ready: 1
+  ready: 0
   icon: {fileID: 21300000, guid: 27d3622add68395448e2c689b2cc56c0, type: 3}
   hp: 0
   fire: {fileID: 0}
   id: 2
+  visualEffect: {fileID: 0}
+  soundEffect: {fileID: 8300000, guid: 2354f6af5d062c0448a35cc286a740ab, type: 3}

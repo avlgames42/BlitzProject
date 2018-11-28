@@ -57,10 +57,13 @@ MonoBehaviour:
   effect: Restaurar
   effectTime: 1
   effectPower: 3
-  purchased: 1
+  purchased: 0
   info: Canaliza energia para restaurar HP.
   ready: 0
   icon: {fileID: 21300000, guid: 0745e5bf3d041a44db9dd0d6946c4738, type: 3}
   hp: 0
   fire: {fileID: 0}
   id: 1
+  visualEffect: {fileID: 1078202947882240, guid: c23ed73de7a58b349b923aa51bfa6aac,
+    type: 2}
+  soundEffect: {fileID: 8300000, guid: d9bfba54e82938c438a896767f57ae3a, type: 3}

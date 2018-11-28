@@ -15,6 +15,7 @@ TagManager:
   - Sentry
   - Trap
   - Fire
+  - Shield
   layers:
   - Default
   - TransparentFX

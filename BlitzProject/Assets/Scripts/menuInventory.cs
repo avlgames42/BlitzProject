@@ -145,17 +145,21 @@ public class menuInventory : MonoBehaviour {
                 }
                 else
                 {
-                    if (gm.GetComponent<GameManager>().skillList[skillIndice].GetComponent<Skill>().purchased == true && player.GetComponent<Player>().skillEquiped.GetComponent<Skill>().ready)
+                    if(player.GetComponent<Player>().skillEquiped.GetComponent<Skill>().active == false)
                     {
-                        player.GetComponent<Player>().skillEquiped = gm.GetComponent<GameManager>().skillList[skillIndice].gameObject;
-                        //muda cor da skill equipada
-                        for (int i = 0; i < auxSkill.transform.childCount; i++)
+                        if (gm.GetComponent<GameManager>().skillList[skillIndice].GetComponent<Skill>().purchased == true && player.GetComponent<Player>().skillEquiped.GetComponent<Skill>().ready)
                         {
-                            auxSkill.transform.GetChild(i).GetComponent<Text>().color = Color.white;
+                            player.GetComponent<Player>().skillEquiped = gm.GetComponent<GameManager>().skillList[skillIndice].gameObject;
+                            //muda cor da skill equipada
+                            for (int i = 0; i < auxSkill.transform.childCount; i++)
+                            {
+                                auxSkill.transform.GetChild(i).GetComponent<Text>().color = Color.white;
+                            }
+                            auxSkill.transform.GetChild(skillIndice).GetComponent<Text>().color = Color.yellow;
+                            player.GetComponent<Player>().skillEquiped.GetComponent<Skill>().ready = true;
                         }
-                        auxSkill.transform.GetChild(skillIndice).GetComponent<Text>().color = Color.yellow;
-                        player.GetComponent<Player>().skillEquiped.GetComponent<Skill>().ready = true;
                     }
+                    
                 }
 
             }

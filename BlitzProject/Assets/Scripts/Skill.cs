@@ -17,6 +17,8 @@ public class Skill : MonoBehaviour {
     public float hp;
     public GameObject fire;
     public int id;
+    public GameObject visualEffect;
+    public AudioClip soundEffect;
 
 	// Use this for initialization
 	void Start () {

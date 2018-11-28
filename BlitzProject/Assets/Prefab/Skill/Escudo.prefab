@@ -59,8 +59,11 @@ MonoBehaviour:
   effectPower: 2
   purchased: 0
   info: Cria uma barreira de energia que protege de armadilhas e ataques inimigos.
-  ready: 1
+  ready: 0
   icon: {fileID: 21300004, guid: 4314d4bf7666e5d45a7b11c11a6d0402, type: 3}
-  hp: 1
+  hp: 2
   fire: {fileID: 0}
   id: 4
+  visualEffect: {fileID: 1583680641433738, guid: 268d900dce04f664f9962c437f812cd4,
+    type: 2}
+  soundEffect: {fileID: 8300000, guid: dfa27d15e200c4446b3613af37719e08, type: 3}

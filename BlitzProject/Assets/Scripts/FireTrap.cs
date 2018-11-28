@@ -21,11 +21,12 @@ public class FireTrap : MonoBehaviour {
     {
 
     }
-
+    
     public void Kabum()
     {
         if (ready)
         {
+            player.GetComponent<AudioSource>().GetComponent<AudioSource>().PlayOneShot(player.GetComponent<Player>().skillEquiped.GetComponent<Skill>().soundEffect, musicControl.soundVolume);
             Vector3 position;
             Instantiate(fire, transform.position, transform.rotation);
 
@@ -53,6 +54,11 @@ public class FireTrap : MonoBehaviour {
         {
             Destroy(fire.gameObject);
         }
+        Destroy(this.gameObject);
+    }
+
+    private void OnBecameInvisible()
+    {
         Destroy(this.gameObject);
     }
 }
