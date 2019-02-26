@@ -84,6 +84,7 @@
      <Compile Include="Assets\Scripts\newEnemy.cs" />
      <Compile Include="Assets\Scripts\Player.cs" />
      <Compile Include="Assets\Scripts\ReadFile.cs" />
+     <Compile Include="Assets\Scripts\ReadText.cs" />
      <Compile Include="Assets\Scripts\Shoot.cs" />
      <Compile Include="Assets\Scripts\ShootTorreta.cs" />
      <Compile Include="Assets\Scripts\Skill.cs" />
@@ -141,6 +142,7 @@
      <None Include="Assets\Tiled2Unity\Imported\mapa_2.tiled2unity.xml" />
      <None Include="Assets\Tiled2Unity\Imported\mapas_10.tiled2unity.xml" />
      <None Include="Assets\Tiled2Unity\Materials\_ReadMe.txt" />
+     <None Include="Assets\Text\teste.txt" />
      <None Include="Assets\Tiled2Unity\Imported\blitzTeste_4.tiled2unity.xml" />
      <None Include="Assets\Tiled2Unity\Imported\mapa_3.tiled2unity.xml" />
      <None Include="Assets\Tiled2Unity\Textures\_ReadMe.txt" />
