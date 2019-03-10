@@ -88,6 +88,7 @@
     <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\Scripts\ReadFile.cs" />
     <Compile Include="Assets\Scripts\ReadText.cs" />
+    <Compile Include="Assets\Scripts\ResearchControl.cs" />
     <Compile Include="Assets\Scripts\Shoot.cs" />
     <Compile Include="Assets\Scripts\ShootTorreta.cs" />
     <Compile Include="Assets\Scripts\Skill.cs" />
@@ -173,6 +174,7 @@
     <None Include="Assets\Tiled2Unity\License.txt" />
     <None Include="Assets\Tiled2Unity\Imported\mapas_3.tiled2unity.xml" />
     <None Include="Assets\Tiled2Unity\Imported\mapas_1.tiled2unity.xml" />
+    <None Include="Assets\Text\pesquisa.txt" />
     <None Include="Assets\Tiled2Unity\Imported\mapas_13.tiled2unity.xml" />
     <None Include="Assets\Tiled2Unity\Imported\_ReadMe.txt" />
     <None Include="Assets\Tiled2Unity\Imported\sem título.tiled2unity.xml" />
@@ -390,17 +392,17 @@
     <Reference Include="Mono.Data.Sqlite">
       <HintPath>D:/Projetos/Blitz/BlitzProject/Assets/Plugins/Mono.Data.Sqlite.dll</HintPath>
     </Reference>
+    <Reference Include="MySql.Data">
+      <HintPath>D:/Projetos/Blitz/BlitzProject/Assets/Plugins/MySql.Data.dll</HintPath>
+    </Reference>
     <Reference Include="System.Data">
-      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.Data.dll</HintPath>
+      <HintPath>D:/Projetos/Blitz/BlitzProject/Assets/Plugins/System.Data.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Analytics">
       <HintPath>C:/Users/hkhel/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.16/UnityEngine.Analytics.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.StandardEvents">
       <HintPath>C:/Users/hkhel/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.13/UnityEngine.StandardEvents.dll</HintPath>
-    </Reference>
-    <Reference Include="MySql.Data">
-      <HintPath>D:/Projetos/Blitz/BlitzProject/Assets/Plugins/MySql.Data.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>C:/Program Files/Unity/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>
@@ -464,6 +466,9 @@
     </Reference>
     <Reference Include="System.Console">
       <HintPath>C:/Program Files/Unity/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Console.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.Common">
+      <HintPath>C:/Program Files/Unity/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Data.Common.dll</HintPath>
     </Reference>
     <Reference Include="System.Diagnostics.Contracts">
       <HintPath>C:/Program Files/Unity/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Diagnostics.Contracts.dll</HintPath>

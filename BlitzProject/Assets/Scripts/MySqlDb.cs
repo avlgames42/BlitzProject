@@ -13,7 +13,7 @@ public class MySqlDb : MonoBehaviour {
     // Use this for initialization
     void Start () {
         source = "Server=localhost;Database=blitzproject;User Id=root;Password=Ogpcae123";
-        DbConnection(source);
+        //DbConnection(source);
         //DbInsert(conn);
     }
 	

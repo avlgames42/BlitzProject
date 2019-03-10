@@ -332,6 +332,9 @@
     <Reference Include="Mono.Data.Sqlite">
       <HintPath>D:/Projetos/Blitz/BlitzProject/Assets/Plugins/Mono.Data.Sqlite.dll</HintPath>
     </Reference>
+    <Reference Include="MySql.Data">
+      <HintPath>D:/Projetos/Blitz/BlitzProject/Assets/Plugins/MySql.Data.dll</HintPath>
+    </Reference>
     <Reference Include="System.Data">
       <HintPath>D:/Projetos/Blitz/BlitzProject/Assets/Plugins/System.Data.dll</HintPath>
     </Reference>
@@ -349,9 +352,6 @@
     </Reference>
     <Reference Include="UnityEngine.StandardEvents">
       <HintPath>C:/Users/hkhel/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.13/UnityEngine.StandardEvents.dll</HintPath>
-    </Reference>
-    <Reference Include="MySql.Data">
-      <HintPath>D:/Projetos/Blitz/BlitzProject/Assets/Plugins/MySql.Data.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>C:/Program Files/Unity/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>
