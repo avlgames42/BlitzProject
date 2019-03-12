@@ -3357,6 +3357,11 @@ Prefab:
       propertyPath: skillActiveInfo
       value: 
       objectReference: {fileID: 850277867}
+    - target: {fileID: 114616784253025720, guid: 46aa045b49eeb114cadda0bc8fc51f04,
+        type: 2}
+      propertyPath: xp
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46aa045b49eeb114cadda0bc8fc51f04, type: 2}
   m_IsPrefabAsset: 0

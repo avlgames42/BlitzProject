@@ -287,8 +287,40 @@ public class menuPrincipal : MonoBehaviour {
         }
         
     }
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 
-    void loadScene(string scene)
+    public void OpenOptions()
+    {
+        indice = 0;
+        state = "options";
+        clearScreen();
+        options.SetActive(true);
+        if (globalMusic == 0)
+        {
+            music.transform.GetChild(0).gameObject.GetComponent<Animator>().SetBool("select", true);
+        }
+        if (globalMusic == 1)
+        {
+            music.transform.GetChild(1).gameObject.GetComponent<Animator>().SetBool("select", true);
+        }
+        if (globalMusic == 2)
+        {
+            music.transform.GetChild(2).gameObject.GetComponent<Animator>().SetBool("select", true);
+        }
+        if (initialLanguage == 0)
+        {
+            idioma.transform.GetChild(0).gameObject.GetComponent<Animator>().SetBool("select", true);
+        }
+        if (initialLanguage == 1)
+        {
+            idioma.transform.GetChild(0).gameObject.GetComponent<Animator>().SetBool("select", true);
+        }
+    }
+
+    public void loadScene(string scene)
     {
         SceneManager.LoadScene(scene);
     }
