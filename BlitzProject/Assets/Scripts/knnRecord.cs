@@ -97,18 +97,8 @@ public class knnRecord : MonoBehaviour {
                 //for (int i = 0 ; i< obj.GetComponent<Player>().arrayMostUsedSkill.Length ; i++)
 
 
-                //salva arma usada durante a sala
-                
-
-
-
-
-
-
-
-
                 file.WriteFile(knn);
-                gravaKnnData(knn);
+                //gravaKnnData(knn);
 
                 //reseta os valores para nova captura
                 numberOfShoots = 0;
@@ -126,16 +116,6 @@ public class knnRecord : MonoBehaviour {
 
                 obj.GetComponent<Player>().recordKnn = false;
                 blockKnn = true;
-
-                /* knn[0] = 0;
-                 knn[1] = 0;
-                 knn[2] = 0;
-                 knn[3] = 0;
-                 knn[4] = 0;
-                 knn[5] = 0;*/
-
-
-                //dataBase.GetDB();
             }
 
         }

@@ -113,11 +113,11 @@ public class Player : MonoBehaviour {
         if (gm.GetComponent<GameManager>().gameState.Equals("play"))
         {
             //pause 
-            if (Input.GetButtonDown("START") && Time.timeScale == 0)
+            if ((Input.GetButtonDown("START") || Input.GetButtonDown("Submit")) && Time.timeScale == 0)
             {
                 Time.timeScale = 1;              
             }
-            else if (Input.GetButtonDown("START") && Time.timeScale == 1)
+            else if ((Input.GetButtonDown("START") || Input.GetButtonDown("Submit")) && Time.timeScale == 1)
             {
                 Time.timeScale = 0;               
             }
@@ -138,20 +138,29 @@ public class Player : MonoBehaviour {
                 gm.SendMessage("showGameOver");
             }
 
+            if (Input.GetMouseButton(0))
+            {
+                Vector2 dir = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                aimDirection = dir - (Vector2)transform.position;
+            }
+            else
+            {
+                aimDirection = new Vector3(Input.GetAxisRaw("HorizontalDireito"), Input.GetAxisRaw("VerticalDireito"));  
+            }
 
-            aimDirection = new Vector3(Input.GetAxisRaw("HorizontalDireito"), Input.GetAxisRaw("VerticalDireito"));
+            //print(aimDirection.ToString());
             aim.transform.localPosition = aimDirection;
 
             movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
             walk(movement);
 
-            if (Input.GetAxisRaw("HorizontalDireito") != 0 || Input.GetAxisRaw("VerticalDireito") != 0)
+            if (Input.GetAxisRaw("HorizontalDireito") != 0 || Input.GetAxisRaw("VerticalDireito") != 0 || Input.GetMouseButton(0))
             {
                 if (!isAttacking) fire();
             }
 
             //utiliza skill
-            if(Input.GetAxisRaw("RT") != 0)
+            if(Input.GetAxisRaw("RT") != 0 || Input.GetMouseButtonDown(1))
             {
                 UseSkill();
             }

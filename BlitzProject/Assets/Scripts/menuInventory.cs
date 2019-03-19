@@ -47,12 +47,12 @@ public class menuInventory : MonoBehaviour {
 	void Update () {
         xp.GetComponent<Transform>().GetChild(0).GetComponent<Text>().text = player.GetComponent<Player>().xp.ToString();
 
-        if (Input.GetButtonUp("A"))
+        if (Input.GetButtonUp("A") || Input.GetButtonUp("Submit"))
         {
             travaParaNaoBugarcompra = false;
         }
 
-        if (gm.GetComponent<GameManager>().gameState.Equals("inventory") && Input.GetButtonDown("B") && status.Equals("compra"))
+        if (gm.GetComponent<GameManager>().gameState.Equals("inventory") && (Input.GetButtonDown("B") || Input.GetButtonDown("Cancel")) && status.Equals("compra"))
         {
             //SceneManager.LoadScene("MenuPrincipal");
             skill = list.GetComponent<Transform>().GetChild(0).gameObject;
@@ -61,7 +61,8 @@ public class menuInventory : MonoBehaviour {
             status = "principal";
         }
 
-        if(Input.GetButtonDown("Y") && gm.GetComponent<GameManager>().gameState.Equals("play"))
+        //entra no inventario
+        if((Input.GetButtonDown("Y") || Input.GetButtonDown("Space")) && gm.GetComponent<GameManager>().gameState.Equals("play"))
         {
             gm.GetComponent<GameManager>().gameState = "inventory";
             status = "principal";
@@ -69,7 +70,7 @@ public class menuInventory : MonoBehaviour {
             ui.SetActive(false);
             seletor.transform.position = skill.transform.GetChild(0).transform.position;
         }
-        else if (Input.GetButtonDown("Y") && gm.GetComponent<GameManager>().gameState.Equals("inventory"))
+        else if ((Input.GetButtonDown("Y") || Input.GetButtonDown("Space")) && gm.GetComponent<GameManager>().gameState.Equals("inventory"))
         {
             gm.GetComponent<GameManager>().gameState = "play";
             list.SetActive(false);
@@ -112,7 +113,7 @@ public class menuInventory : MonoBehaviour {
             }
 
             //faz a compra
-            if(Input.GetButtonDown("A") && indice == 1 && travaParaNaoBugarcompra == false)
+            if((Input.GetButtonDown("A") || Input.GetButtonDown("Submit")) && indice == 1 && travaParaNaoBugarcompra == false)
             {
                 if (gm.GetComponent<GameManager>().skillList[skillIndice].GetComponent<Skill>().purchased == false &&
                     player.GetComponent<Player>().xp >= gm.GetComponent<GameManager>().skillList[skillIndice].GetComponent<Skill>().cost)
@@ -125,7 +126,7 @@ public class menuInventory : MonoBehaviour {
 
 
             //equipa skill
-            if (Input.GetButtonDown("A") && indice == 0)
+            if ((Input.GetButtonDown("A") || Input.GetButtonDown("Submit")) && indice == 0)
             {
                 if (firstBuy)
                 {
@@ -218,7 +219,7 @@ public class menuInventory : MonoBehaviour {
             seletor.transform.position = skill.transform.GetChild(indice).transform.position;
 
             //entra no modo compra
-            if (Input.GetButtonDown("A") && status.Equals("principal"))
+            if ((Input.GetButtonDown("A") || Input.GetButtonDown("Submit")) && status.Equals("principal"))
             {
                 status = "compra";
                 buyConfirm.SetActive(true);
@@ -229,6 +230,64 @@ public class menuInventory : MonoBehaviour {
             }
         }
             
+    }
+
+    public void ShowSkillInfo(int id)
+    {
+        indice = id;
+        skillIndice = id;
+        buyConfirm.SetActive(true);
+    }
+
+    public void BuySkill()
+    {
+        if (gm.GetComponent<GameManager>().skillList[skillIndice].GetComponent<Skill>().purchased == false &&
+    player.GetComponent<Player>().xp >= gm.GetComponent<GameManager>().skillList[skillIndice].GetComponent<Skill>().cost)
+        {
+            gm.GetComponent<GameManager>().skillList[skillIndice].GetComponent<Skill>().purchased = true;
+            player.GetComponent<Player>().xp -= gm.GetComponent<GameManager>().skillList[skillIndice].GetComponent<Skill>().cost;
+            skillCost.GetComponent<Text>().text = "Comprado";
+            status = "compra";
+        }
+
+    }
+
+    public void EquipSkill()
+    {
+        if (firstBuy)
+        {
+            if (gm.GetComponent<GameManager>().skillList[skillIndice].GetComponent<Skill>().purchased == true)
+            {
+                player.GetComponent<Player>().skillEquiped = gm.GetComponent<GameManager>().skillList[skillIndice].gameObject;
+                firstBuy = false;
+                //muda cor da skill equipada
+                for (int i = 0; i < auxSkill.transform.childCount; i++)
+                {
+                    auxSkill.transform.GetChild(i).GetComponent<Text>().color = Color.white;
+                }
+                auxSkill.transform.GetChild(skillIndice).GetComponent<Text>().color = Color.yellow;
+                player.GetComponent<Player>().skillEquiped.GetComponent<Skill>().ready = true;
+                knn.GetComponent<knnRecord>().firstSkill = player.GetComponent<Player>().skillEquiped.GetComponent<Skill>().id;
+            }
+        }
+        else
+        {
+            if (player.GetComponent<Player>().skillEquiped.GetComponent<Skill>().active == false)
+            {
+                if (gm.GetComponent<GameManager>().skillList[skillIndice].GetComponent<Skill>().purchased == true && player.GetComponent<Player>().skillEquiped.GetComponent<Skill>().ready)
+                {
+                    player.GetComponent<Player>().skillEquiped = gm.GetComponent<GameManager>().skillList[skillIndice].gameObject;
+                    //muda cor da skill equipada
+                    for (int i = 0; i < auxSkill.transform.childCount; i++)
+                    {
+                        auxSkill.transform.GetChild(i).GetComponent<Text>().color = Color.white;
+                    }
+                    auxSkill.transform.GetChild(skillIndice).GetComponent<Text>().color = Color.yellow;
+                    player.GetComponent<Player>().skillEquiped.GetComponent<Skill>().ready = true;
+                }
+            }
+
+        }
     }
 
     void selection()

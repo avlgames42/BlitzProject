@@ -396,7 +396,7 @@
       <HintPath>D:/Projetos/Blitz/BlitzProject/Assets/Plugins/MySql.Data.dll</HintPath>
     </Reference>
     <Reference Include="System.Data">
-      <HintPath>D:/Projetos/Blitz/BlitzProject/Assets/Plugins/System.Data.dll</HintPath>
+      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.Data.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Analytics">
       <HintPath>C:/Users/hkhel/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.16/UnityEngine.Analytics.dll</HintPath>
