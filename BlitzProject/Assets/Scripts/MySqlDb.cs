@@ -29,12 +29,6 @@ public class MySqlDb : MonoBehaviour
         int playGames;
 
 
-        foreach (var item in jogador)
-        {
-            print(item.ToString());
-        }
-
-
 
         if (jogador[5] == "SIM")
         {
