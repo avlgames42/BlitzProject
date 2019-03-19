@@ -79,7 +79,15 @@ public class ResearchControl : MonoBehaviour {
 
     public void SetGenero(int index)
     {       
-        jogador[2] = jogadorGenero.transform.GetChild(index).gameObject.transform.GetChild(1).GetComponent<Text>().text;
+        string genero = jogadorGenero.transform.GetChild(index).gameObject.transform.GetChild(1).GetComponent<Text>().text;
+
+        if (genero == "Feminino")
+            jogador[2] = "F";
+        else if (genero == "Masculino")
+            jogador[2] = "M";
+        else
+            jogador[2] = "N";
+     
         aux[2] = 1;
     }
 
