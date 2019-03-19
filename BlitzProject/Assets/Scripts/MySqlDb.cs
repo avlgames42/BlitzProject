@@ -1,38 +1,60 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using MySql.Data.MySqlClient;
 using System.Data;
 
-public class MySqlDb : MonoBehaviour {
+public class MySqlDb : MonoBehaviour
 
+{
+    string urlPost = "http://ec2-54-69-94-4.us-west-2.compute.amazonaws.com/InsertPlayerInfo.php";
 
-    string source;
-    MySqlConnection conn;
-
-    // Use this for initialization
-    void Start () {
-        source = "Server=localhost;Database=blitzproject;User Id=root;Password=Ogpcae123";
-        //DbConnection(source);
-        //DbInsert(conn);
-    }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
-    void DbConnection(string _source) 
+     public void Start()
     {
-        conn = new MySqlConnection(_source);
-        conn.Open ();
     }
 
-    void DbInsert(MySqlConnection _conn)
+
+    public void Insert()
     {
-        MySqlCommand command = _conn.CreateCommand();
-        command.CommandText = "INSERT INTO jogador (nome) VALUES ('Luis')";
-        command.ExecuteNonQuery();
-        _conn.Close();
+        GameObject research = GameObject.Find("Canvas");
+        ResearchControl researchScript = research.GetComponent<ResearchControl>();
+
+        InsertPlayerInfo(researchScript.jogador);
+    }
+
+
+    public void InsertPlayerInfo(string[] jogador)
+    {
+        print("InsertPlayerInfo");
+        int playGames;
+
+
+        foreach (var item in jogador)
+        {
+            print(item.ToString());
+        }
+
+
+
+        if (jogador[5] == "SIM")
+        {
+            playGames = 1;
+        }
+        else
+        {
+            playGames = 0;
+        }
+
+
+        WWWForm form = new WWWForm();
+        form.AddField("playerNamePost", jogador[0]);
+        form.AddField("genderPost", jogador[2]);
+        form.AddField("agePost", jogador[1]);
+        form.AddField("educationPost", jogador[3]);
+        form.AddField("cityPost", jogador[4]);
+        form.AddField("playGamesPost", playGames);
+
+        WWW www = new WWW(urlPost, form );
+
     }
 }
