@@ -26,8 +26,8 @@ public class ResearchControl : MonoBehaviour {
     public int count = 0;
 
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         welcomeMessage.SetActive(true);
         firstResearch.SetActive(false);
         finalResearch.SetActive(false);
@@ -36,10 +36,13 @@ public class ResearchControl : MonoBehaviour {
         jogadorTempo.SetActive(false);
         btnEnviar.SetActive(false);
         auxGenero = new int[jogadorGenero.transform.childCount];
-	}
-	
-	// Update is called once per frame
-	void Update () {
+   
+
+    }
+
+
+    // Update is called once per frame
+    void Update () {
         if(aux[4] == 1)
         {
             for (int i = 0; i < aux.Length; i++)
