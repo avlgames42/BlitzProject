@@ -13,10 +13,17 @@ public class ReadText : MonoBehaviour {
     public GameObject message;
     public string[] texto;
 
+    int cdPlayer;
+
+
     public int fimDaLinha;
     public int linhaAtual;
 
+    bool ok = false;
+
     public int[] playerAnswer = new int[27];
+
+    string urlPost = "http://ec2-54-69-94-4.us-west-2.compute.amazonaws.com/InsertPlayerQuestions.php";
 
     // Use this for initialization
     void Start() {
@@ -31,6 +38,8 @@ public class ReadText : MonoBehaviour {
         {
             fimDaLinha = texto.Length;
         }
+
+
     }
 
     // Update is called once per frame
@@ -46,17 +55,40 @@ public class ReadText : MonoBehaviour {
 
 
 
+
+
     public void Answer(int resp)
     {
         //guarda a resposta no vetor
         playerAnswer[linhaAtual] = resp;
+
+        GameObject user = GameObject.Find("GetUser");
+        CdPlayer getUser = user.GetComponent<CdPlayer>();
+
+ 
+        cdPlayer = getUser.cdPlayer;
+
+        WWWForm form = new WWWForm();
+
+        form.AddField("cdPlayerPost", cdPlayer);
+        form.AddField("questionPost", linhaAtual);
+        form.AddField("answerPost", resp);
+
+        WWW www = new WWW(urlPost, form);
+
+
         linhaAtual++;
     }
+
+
+
 
     public void LoadScene()
     {
         SceneManager.LoadScene("MenuPrincipal");
     }
 
+
+        
 }
 
