@@ -31,7 +31,7 @@ public class knnRecord : MonoBehaviour {
 
     GameObject obj;
 
-    FileMaker file = new FileMaker();
+    //FileMaker file = new FileMaker();
     MySqlDb insert = new MySqlDb();
 
     public int totalEnergy = 0;
@@ -98,8 +98,8 @@ public class knnRecord : MonoBehaviour {
                 //for (int i = 0 ; i< obj.GetComponent<Player>().arrayMostUsedSkill.Length ; i++)
 
 
-                file.WriteFile(knn);
-                insert.InsertKnnData(knn, distanceAux);
+                //file.WriteFile(knn);
+                
                 //gravaKnnData(knn);
 
                 //reseta os valores para nova captura
@@ -116,6 +116,8 @@ public class knnRecord : MonoBehaviour {
                 collectedEnergy = 0;
                 totalEnergy = 0;
 
+                insert.InsertKnnData(knn, distanceAux);
+
                 obj.GetComponent<Player>().recordKnn = false;
                 blockKnn = true;
             }
@@ -128,73 +130,4 @@ public class knnRecord : MonoBehaviour {
 
     }
 
-
-    //public void gravaKnnData(float[] knn)
-    //{
-
-
-    //    IDbConnection dbconn;
-    //    dbconn = (IDbConnection)new SqliteConnection(conn);
-    //    dbconn.Open(); //Open connection to the database.
-    //    IDbCommand dbcmd = dbconn.CreateCommand();
-
-
-    //    String query = "INSERT INTO player_knn_data (player_name, number_of_shoots, number_of_hits, hp_lost, heal, seconds) VALUES ($1, $2, $3, $4, $5, $6)";
-
-
-    //    string sql = "insert into table1 (column2) values ($1)";
-    //    dbcmd.CommandText = sql;
-
-    //    IDbDataParameter param1 = dbcmd.CreateParameter();
-    //    param1.DbType = DbType.AnsiString;
-    //    param1.ParameterName = "1";
-    //    param1.Value = "PlayerTest";
-    //    dbcmd.Parameters.Add(param1);
-
-
-    //    IDbDataParameter param2 = dbcmd.CreateParameter();
-    //    param2.DbType = DbType.VarNumeric;
-    //    param2.ParameterName = "2";
-    //    param2.Value = knn[0];
-    //    dbcmd.Parameters.Add(param2);
-
-
-
-    //    IDbDataParameter param3 = dbcmd.CreateParameter();
-    //    param3.DbType = DbType.VarNumeric;
-    //    param3.ParameterName = "3";
-    //    param3.Value = knn[1];
-    //    dbcmd.Parameters.Add(param3);
-
-
-    //    IDbDataParameter param4 = dbcmd.CreateParameter();
-    //    param4.DbType = DbType.VarNumeric;
-    //    param4.ParameterName = "4";
-    //    param4.Value = knn[3];
-    //    dbcmd.Parameters.Add(param4);
-
-
-    //    IDbDataParameter param5 = dbcmd.CreateParameter();
-    //    param5.DbType = DbType.VarNumeric;
-    //    param5.ParameterName = "5";
-    //    param5.Value = knn[4];
-    //    dbcmd.Parameters.Add(param5);
-
-
-
-    //    IDbDataParameter param6 = dbcmd.CreateParameter();
-    //    param6.DbType = DbType.VarNumeric;
-    //    param6.ParameterName = "6";
-    //    param6.Value = knn[5];
-    //    dbcmd.Parameters.Add(param6);
-
-    //    dbcmd.ExecuteNonQuery();
-
-    //    dbcmd.Dispose();
-    //    dbcmd = null;
-    //    dbconn.Close();
-    //    dbconn = null;
-
-
-    //}
 }
