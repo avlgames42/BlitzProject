@@ -125,6 +125,15 @@ public class GameManager : MonoBehaviour {
         GetComponent<AudioSource>().PlayOneShot(healSound, musicControl.soundVolume);
     }
 
+    public void RestartLevel()
+    {
+        SceneManager.LoadScene("Floor_1");
+    }
+
+    public void ReturnToMenu()
+    {
+        SceneManager.LoadScene("MenuPrincipal");
+    }
 
 
 }

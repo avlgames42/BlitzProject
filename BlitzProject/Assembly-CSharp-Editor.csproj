@@ -69,16 +69,16 @@
     <Compile Include="Assets\Tiled2Unity\Scripts\Editor\Tiled2UnityMenuItems.cs" />
     <Compile Include="Assets\Tiled2Unity\Scripts\Editor\TiledAssetPostProcessor.cs" />
     <Reference Include="UnityEditor.StandardEvents">
-      <HintPath>D:/Projetos/Blitz/BlitzProject/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+      <HintPath>D:/Projetos/_GIT/BlitzProject/BlitzProject/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>D:/Projetos/Blitz/BlitzProject/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>D:/Projetos/_GIT/BlitzProject/BlitzProject/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>D:/Projetos/Blitz/BlitzProject/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+      <HintPath>D:/Projetos/_GIT/BlitzProject/BlitzProject/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>D:/Projetos/Blitz/BlitzProject/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>D:/Projetos/_GIT/BlitzProject/BlitzProject/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -330,13 +330,13 @@
       <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/windowsstandalonesupport/UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Data.Sqlite">
-      <HintPath>D:/Projetos/Blitz/BlitzProject/Assets/Plugins/Mono.Data.Sqlite.dll</HintPath>
+      <HintPath>D:/Projetos/_GIT/BlitzProject/BlitzProject/Assets/Plugins/Mono.Data.Sqlite.dll</HintPath>
     </Reference>
     <Reference Include="MySql.Data">
-      <HintPath>D:/Projetos/Blitz/BlitzProject/Assets/Plugins/MySql.Data.dll</HintPath>
+      <HintPath>D:/Projetos/_GIT/BlitzProject/BlitzProject/Assets/Plugins/MySql.Data.dll</HintPath>
     </Reference>
     <Reference Include="System.Data">
-      <HintPath>D:/Projetos/Blitz/BlitzProject/Assets/Plugins/System.Data.dll</HintPath>
+      <HintPath>D:/Projetos/_GIT/BlitzProject/BlitzProject/Assets/Plugins/System.Data.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.Advertisements">
       <HintPath>C:/Users/hkhel/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.ads@2.0.8/Editor/UnityEditor.Advertisements.dll</HintPath>

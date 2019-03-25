@@ -310,7 +310,7 @@ MonoBehaviour:
   prize: 1
   shootID: 0
   auxShootID: 0
-  xp: 100
+  xp: 0
   skillEquiped: {fileID: 0}
   skillIcon: {fileID: 0}
   iconShoot: {fileID: 0}

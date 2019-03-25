@@ -964,7 +964,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Obrigado por responder nossa pesquisa.
+  m_Text: Se quiser reportar algum bug ou dar feedback envie um email para avlgames42@gmail.com.
+    Obrigado!
 --- !u!222 &176158360
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3645,6 +3646,47 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AllowSwitchOff: 0
+--- !u!1 &822658908
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 822658910}
+  - component: {fileID: 822658909}
+  m_Layer: 0
+  m_Name: Getuser
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &822658909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 822658908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce101cd005c396d458ae8b9814ef9da0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cdPlayer: 0
+--- !u!4 &822658910
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 822658908}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 294.11224, y: 165.61263, z: 0.33507255}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &840071765
 GameObject:
   m_ObjectHideFlags: 0
@@ -6918,7 +6960,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1530158077
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6990,7 +7032,6 @@ MonoBehaviour:
   btnClose: {fileID: 1213599980}
   panelQuestions: {fileID: 1858023478}
   message: {fileID: 176158358}
-  texto: []
   fimDaLinha: 0
   linhaAtual: 0
   playerAnswer: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
