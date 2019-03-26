@@ -20,10 +20,15 @@ public class ResearchControl : MonoBehaviour {
     public GameObject btnEnviar;
     public GameObject formacaoInput;
     public GameObject cidadeInput;
+    public GameObject emailPanel;
+    public GameObject emailInput;
+    public GameObject btnEnviarEmail;
 
     public int[] aux = new int[7] { 0, 0, 0, 0, 0, 0, 0 };
     int[] auxGenero;
     public int count = 0;
+
+    public string email;
 
 
     // Use this for initialization
@@ -35,6 +40,8 @@ public class ResearchControl : MonoBehaviour {
         cidadeInput.SetActive(false);
         jogadorTempo.SetActive(false);
         btnEnviar.SetActive(false);
+        emailPanel.SetActive(false);
+        btnEnviarEmail.SetActive(false);
         auxGenero = new int[jogadorGenero.transform.childCount];
    
 
@@ -56,16 +63,35 @@ public class ResearchControl : MonoBehaviour {
 
 	}
 
+    //alterna entre a tela de login e a tela 1 de pesquisa
     public void EnterResearch()
     {
-        welcomeMessage.SetActive(false);
+        emailPanel.SetActive(false);
         firstResearch.SetActive(true);
     }
 
+    // alterna entre a tela de pesquisa 1 e a tela de pesquisa 2
     public void EnterFinalResearch()
     {
         firstResearch.SetActive(false);
         finalResearch.SetActive(true);
+    }
+
+    //captura o email do jogador
+    public void SetEmail()
+    {
+        email = emailInput.GetComponent<InputField>().text;
+        if(email != null)
+        {
+            btnEnviarEmail.SetActive(true);
+        }
+    }
+
+    //alterna entre a tela de boas vindas e tela de login/ email
+    public void Login()
+    {
+        welcomeMessage.SetActive(false);
+        emailPanel.SetActive(true);
     }
     
     public void SetName()
