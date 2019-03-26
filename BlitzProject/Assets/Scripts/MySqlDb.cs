@@ -89,6 +89,8 @@ public class MySqlDb : MonoBehaviour
         form.AddField("secondsPost", (knn[5]).ToString());
         form.AddField("firstSkillPost", (knn[9]).ToString());
         form.AddField("distanceOfEnemysPost", (knn[6]).ToString());
+        form.AddField("collectedEnergyPost", (knn[7]).ToString());
+        form.AddField("usedShootPost", (knn[8]).ToString());
 
         WWW www = new WWW(urlPostKnn, form);
 
