@@ -22,11 +22,11 @@ public class ReadText : MonoBehaviour {
 
 
     public int fimDaLinha;
-    public int linhaAtual;
+    int linhaAtual = 0;
 
     bool ok = false;
 
-    public int[] playerAnswer = new int[27];
+    int[] playerAnswer = new int[28];
 
 
 
@@ -39,20 +39,8 @@ public class ReadText : MonoBehaviour {
         message.SetActive(false);
 
 
-        //if (file != null)
-
-        //{
-        //    texto = (file.text.Split('\n'));
-        //}
-        //if (fimDaLinha == 0)
-        //{
-        //    fimDaLinha = texto.Length;
-        //}
-
-
-
-
-        texto = new string[] { "Voce utiliza com muita frequencia os meios de comunicacao dos jogos (chat escrito ou voz, emotes, etc)?",
+        texto = new string[] {
+    "Voce utiliza com muita frequencia os meios de comunicacao dos jogos (chat escrito ou voz, emotes, etc)?",
 	"Seus jogos preferidos sao do genero RPG, ficcao e/ou realidade alternativa?",
 	"Voce costuma comprar ou desbloquear as skins caras e/ou mais cobicadas?",
 	"Voce joga os jogos que sao lancamento, fase beta e/ou acesso antecipado?",
@@ -85,8 +73,17 @@ public class ReadText : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        if(linhaAtual < playerAnswer.Length) text.GetComponent<Text>().text = texto[linhaAtual];
-        if(linhaAtual >= 27)
+
+        print("playerAnswer.Length " + playerAnswer.Length);
+        print("linhaAtual out" + linhaAtual);
+
+        if (linhaAtual < playerAnswer.Length)
+        {
+
+            text.GetComponent<Text>().text = texto[linhaAtual];
+        }
+       
+        if (linhaAtual > 27)
         {
             btnClose.SetActive(true);
             panelQuestions.SetActive(false);
