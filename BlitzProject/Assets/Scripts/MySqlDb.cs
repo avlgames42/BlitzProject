@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 using MySql.Data.MySqlClient;
 using System.Data;
 using System;
@@ -10,6 +11,8 @@ public class MySqlDb : MonoBehaviour
 {
     string urlPost = "http://ec2-54-69-94-4.us-west-2.compute.amazonaws.com/InsertPlayerInfo.php";
     string urlPostKnn = "http://ec2-54-69-94-4.us-west-2.compute.amazonaws.com/InsertKnnData.php";
+    public int[] sumArray;
+
 
     public int cdPlayer;
     
@@ -79,6 +82,14 @@ public class MySqlDb : MonoBehaviour
 
         print("KnncdPlayer" + cdPlayer);
 
+        GameObject sum = GameObject.Find("KnnWatcher");
+        GetAnswerSum sumResult = sum.GetComponent<GetAnswerSum>();
+        sumArray = sumResult.sumArray;
+
+        string label = getLabel(sumArray);
+        print("label " + label);
+
+
         WWWForm form = new WWWForm();
         form.AddField("cdplayerPost", cdPlayer);
         form.AddField("intOfShootsPost", (knn[0]).ToString());
@@ -91,6 +102,7 @@ public class MySqlDb : MonoBehaviour
         form.AddField("distanceOfEnemysPost", (knn[6]).ToString());
         form.AddField("collectedEnergyPost", (knn[7]).ToString());
         form.AddField("usedShootPost", (knn[8]).ToString());
+        form.AddField("labelPost", label);
 
         WWW www = new WWW(urlPostKnn, form);
 
@@ -98,7 +110,26 @@ public class MySqlDb : MonoBehaviour
     }
 
 
+    public string getLabel(int[] anArray)
+    {
+        int maxValue = anArray.Max();
+        int maxIndex = anArray.ToList().IndexOf(maxValue);
+        print("maxIndex " + maxIndex);
 
+        switch (maxIndex)
+        {
+            case 0:
+                return "Sobrevivente";
+            case 1:
+                return "Explorador";
+            case 2:
+                return "TaNaDisney";
+            case 3:
+                return "MexeuComaMae";
+            default:
+                return "";
+        }
 
+    }
 
 }
