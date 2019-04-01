@@ -1236,8 +1236,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 640, y: -239}
-  m_SizeDelta: {x: 1116.8, y: 292.7}
+  m_AnchoredPosition: {x: 640, y: -276}
+  m_SizeDelta: {x: 1000.7, y: 384}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &242801191
 MonoBehaviour:
@@ -1271,8 +1271,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Obrigado por participar da vers\xE3o de beta de Blitz Project. Antes de
-    come\xE7ar precisamos que voc\xEA nos ajude respondendo a uma pequena pesquisa."
+  m_Text: "Obrigado por participar da vers\xE3o beta de Blitz Project. Antes de come\xE7ar
+    precisamos que voc\xEA nos ajude respondendo a uma pequena pesquisa."
 --- !u!222 &242801192
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1991,7 +1991,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0a0423f8ba2f3440b8e112a63aa108c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cdPlayerEmail: 0
 --- !u!1 &449094162
 GameObject:
   m_ObjectHideFlags: 0
