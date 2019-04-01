@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 public class ResearchControl : MonoBehaviour {
 
@@ -23,6 +25,12 @@ public class ResearchControl : MonoBehaviour {
     public GameObject emailPanel;
     public GameObject emailInput;
     public GameObject btnEnviarEmail;
+
+
+    string cdPlayerByEmail;
+    public int cdPlayerEmail = 0;
+    string urlGetEmail = "http://ec2-54-69-94-4.us-west-2.compute.amazonaws.com/GetEmail.php?player_email=";
+
 
     public int[] aux = new int[7] { 0, 0, 0, 0, 0, 0, 0 };
     int[] auxGenero;
@@ -66,8 +74,20 @@ public class ResearchControl : MonoBehaviour {
     //alterna entre a tela de login e a tela 1 de pesquisa
     public void EnterResearch()
     {
-        emailPanel.SetActive(false);
-        firstResearch.SetActive(true);
+
+
+        if (cdPlayerEmail!=0)
+        {
+            print("entrou no if");
+            SceneManager.LoadScene("MenuPrincipal");
+
+        }
+        else
+        {
+            print("entrou no else");
+            emailPanel.SetActive(false);
+            firstResearch.SetActive(true);
+        }
     }
 
     // alterna entre a tela de pesquisa 1 e a tela de pesquisa 2
@@ -80,12 +100,47 @@ public class ResearchControl : MonoBehaviour {
     //captura o email do jogador
     public void SetEmail()
     {
-        email = emailInput.GetComponent<InputField>().text;
+        email = emailInput.GetComponent<InputField>().text.Trim();
         if(email != null)
         {
-            btnEnviarEmail.SetActive(true);
+            print(email);
+            StartCoroutine(Coroutine(email));
+            
         }
     }
+
+
+    // Use this for initialization
+    public IEnumerator Coroutine(string email)
+    {
+
+        GameObject user = GameObject.Find("GetUser");
+        CdPlayer getUser = user.GetComponent<CdPlayer>();
+        
+
+        WWW cdPlayer = new WWW(urlGetEmail + email);
+        yield return cdPlayer;
+
+
+        cdPlayerByEmail = cdPlayer.text.ToString();
+
+        if (cdPlayerByEmail!="")
+        {
+
+            cdPlayerEmail = int.Parse(cdPlayerByEmail);
+            getUser.cdPlayer = cdPlayerEmail;
+            print("cdPlayerEmail " + cdPlayerEmail);
+            print(cdPlayerEmail);
+            btnEnviarEmail.SetActive(true);
+        }
+        else
+        {
+
+            btnEnviarEmail.SetActive(true);
+        }
+       
+    }
+
 
     //alterna entre a tela de boas vindas e tela de login/ email
     public void Login()
@@ -99,6 +154,9 @@ public class ResearchControl : MonoBehaviour {
         jogador[0] = jogadorName.GetComponent<InputField>().text;
         aux[0] = 1;
     }
+
+
+
 
     public void SetAge()
     {
