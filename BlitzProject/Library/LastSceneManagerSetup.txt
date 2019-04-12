@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/Pesquisa.unity
+- path: Assets/Scenes/Floor_1.unity
   isLoaded: 1
   isActive: 1

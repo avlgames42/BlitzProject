@@ -13,7 +13,8 @@ public class knnNew : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        //KNN();
+        double[] unknown = new double[] { 2.75, 2.1 };
+        KNN(unknown, 4);
 	}
 	
 	// Update is called once per frame
@@ -21,7 +22,7 @@ public class knnNew : MonoBehaviour {
 		
 	}
 
-    public void KNN (double [] unknown, int k)
+    public void KNN (double[] unknown, int k)
     {
         //carrega a matriz de treinamento
         double[][] trainData = LoadData();
@@ -43,6 +44,17 @@ public class knnNew : MonoBehaviour {
             info[i] = curr;
         }
         Array.Sort(info);  // sort by distance crescent order
+        print("Nearest / Distance / Class");
+        print("==========================");
+        for (int i = 0; i < k; ++i)
+        {
+            int c = (int)trainData[info[i].idx][2];
+            string dist = info[i].dist.ToString("F3");
+            print("( " + trainData[info[i].idx][0] +
+              "," + trainData[info[i].idx][1] + " )  :  " +
+              dist + "        " + c);
+        }
+
         int result = Vote(info, trainData, numClasses, k);
         return result;
     } // Classify
@@ -53,7 +65,7 @@ public class knnNew : MonoBehaviour {
         for (int i = 0; i < k; ++i)
         {       // Just first k
             int idx = info[i].idx;            // Which train item
-            int c = (int)trainData[idx][11];   // Class in last cell
+            int c = (int)trainData[idx][2];   // Class in last cell
                                               //c = 11;
             ++votes[c];
         }

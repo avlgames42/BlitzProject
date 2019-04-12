@@ -132,7 +132,8 @@ public class Enemy: MonoBehaviour
                 // se a distancia for menor que a de ataque , ataca o target
                 if (target != initialPosition && distance < AttackRadius)
                 {
-                    if (!isAttack && !anim.GetCurrentAnimatorStateInfo(0).IsTag("dead"))
+                    //if (!isAttack && !anim.GetCurrentAnimatorStateInfo(0).IsTag("dead"))
+                    if (!isAttack && hp > 0)
                     {
                         if (!stun)
                         {
