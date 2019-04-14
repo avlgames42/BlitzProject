@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4955657273702662}
   - component: {fileID: 114716202002276346}
   m_Layer: 0
-  m_Name: Escudo
+  m_Name: SHIELD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -54,11 +54,11 @@ MonoBehaviour:
   rechargeTime: 60
   active: 1
   cost: 25
-  effect: Escudo
+  effect: Shield
   effectTime: 5
   effectPower: 2
   purchased: 0
-  info: Cria uma barreira de energia que protege de armadilhas e ataques inimigos.
+  info: Creates a barrier of energy that protects you from enemy traps and attacks.
   ready: 0
   icon: {fileID: 21300004, guid: 4314d4bf7666e5d45a7b11c11a6d0402, type: 3}
   hp: 2

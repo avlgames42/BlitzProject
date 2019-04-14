@@ -40,43 +40,42 @@ public class ReadText : MonoBehaviour {
 
 
         texto = new string[] {
-    "Voce utiliza com muita frequencia os meios de comunicacao dos jogos (chat escrito ou voz, emotes, etc)?",
-	"Seus jogos preferidos sao do genero RPG, ficcao e/ou realidade alternativa?",
-	"Voce costuma comprar ou desbloquear as skins caras e/ou mais cobicadas?",
-	"Voce joga os jogos que sao lancamento, fase beta e/ou acesso antecipado?",
-	"Voce termina os jogos que mais gosta?",
-	"As historias dos jogos conseguem alterar seus sentimentos?",
-	"Voce permanece motivado a jogar mesmo com diversas derrotas consecutivas?",
-	"Voce frequentemente discute com outros jogadores e/ou faz provocacoes?",
-	"Em um jogo competitivo em equipe, voce sente que na maioria das vezes seus parceiros mais te atrapalham do que ajudam?",
-	"Voce possui horas reservadas apenas para jogar?",
-	"Voce se considera um jogador habilidoso?",
-	"Ao ficar frustrado com o jogo voce tende a abandona-lo e/ou criticar?",
-	"Quando quer cumprir um objetivo no jogo, tem tendencia a explorar a deficiencia ou equilibrio do jogo?",
-	"Nos jogos em equipe voce tenta assumir a lideranca?",
-	"Voce costuma jogar com cautela quando comeca uma nova fase nos jogos?",
-	"Voce completa o tutorial dos jogos?",
-	"As artes e graficos sao determinantes para voce jogar um jogo?",
-	"Voce compartilha com os outros suas tecnicas de jogo?",
-	"Voce se sente desconfortavel quando seu desempenho e comparado com outros jogadores?",
-	"Voce prefere jogar sozinho em vez de jogar em grupo?",
-	"Voce prefere jogos de estrategia do que jogos de acao?",
-	"Voce costuma ser paciente com erros, travamentos e/ou bugs nos jogos?",
-	"Voce costuma ser paciente com criticas e/ou ofensas de outros jogadores?",
-	"Voce prefere jogos simples e/ou casuais?",
-	"Voce costuma deixar o inventario do jogo desorganizado?",
-	"Em um jogo, voce prioriza a diversao do que a competicao?",
-	"Seus jogos preferidos sao os classicos e/ou os lançados ha alguns anos?",
-	"Voce prefere usar a skin padrao (inicial) de um personagem?"};
+                    "Do you use very often the communication means of the games (written or voice chat, emotes, etc) ?",
+                    "Your favorite games are the genre RPG, fiction or alternate reality ?",
+                    "Do you usually buy or unlock expensive skin or more coveted ?",
+                    "Do you play the games that are release, beta or early access ?",
+                    "Do you finish the games that you like ?",
+                    "Do the stories of the games can change your feelings ?",
+                    "Do you stay motivated to play the same game with several consecutive defeats ?",
+                    "Do you often discuss with other players or makes provocations ?",
+                    "In a competitive team play, do you feel that most of the time partners more confuse than help you ?",
+                    "Do you have reserved hours just to play ?",
+                    "Do you consider yourself a skilled player ?",
+                    "To get frustrated with a game you tend to abandon it or criticize ?",
+                    "When you want to accomplish a goal in a game, do you have tendency to explore the deficiency or balance of the game ?",
+                    "In team games do you try to take the leadership ?",
+                    "Do you usually play with caution when begins a new phase in the games ?",
+                    "Do you complete the game's  tutorial?",
+                    "The arts and graphics are crucial for you to play a game ?",
+                    "Do you share with others your game techniques ?",
+                    "Do you feel uncomfortable when your performance is compared with other players ?",
+                    "Do you prefer to play alone instead of playing in a group ?",
+                    "Do you prefer strategy games than action games ?",
+                    "Are you patient with bugs or crashes in games ?",
+                    "Are you usually patient with critical or attacks from other players ?",
+                    "Do you prefer casual games?",
+                    "Do you usually leave the game inventory disorganized?",
+                    "In a game, do you prioritize the fun than the competition ?",
+                    "Your favorite games are the classic and / or launched a few years ago ?",
+                    "Do you prefer the default skin of a character?"
+        };
 
 }
 
     // Update is called once per frame
     void Update() {
 
-        print("playerAnswer.Length " + playerAnswer.Length);
-        print("linhaAtual out" + linhaAtual);
-
+  
         if (linhaAtual < playerAnswer.Length)
         {
 

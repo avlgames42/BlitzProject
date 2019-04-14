@@ -24,7 +24,7 @@ public class menuPrincipal : MonoBehaviour {
 
     public static float globalVolume = .5f;
     public static int globalMusic = 0;
-    public static int initialLanguage = 0;
+    public static int initialLanguage = 1;
     float effectsVolume = .5f;
 
     public AudioClip axisSound;
@@ -37,7 +37,7 @@ public class menuPrincipal : MonoBehaviour {
 
         musicControl.soundVolume = effectsVolume;
 
-        initialLanguage = 0;
+        initialLanguage = 1;
     }
 	
 	// Update is called once per frame

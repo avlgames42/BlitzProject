@@ -89,8 +89,8 @@ public class menuInventory : MonoBehaviour {
             {
                 skillName.GetComponent<Text>().text = gm.GetComponent<GameManager>().skillList[indice].GetComponent<Transform>().name;
                 skillInfo.GetComponent<Text>().text = gm.GetComponent<GameManager>().skillList[indice].GetComponent<Skill>().info;
-                skillPower.GetComponent<Text>().text = "Poder: " + gm.GetComponent<GameManager>().skillList[indice].GetComponent<Skill>().effectPower.ToString();
-                skillTime.GetComponent<Text>().text = "Tempo: " + gm.GetComponent<GameManager>().skillList[indice].GetComponent<Skill>().effectTime.ToString();
+                skillPower.GetComponent<Text>().text = "Power: " + gm.GetComponent<GameManager>().skillList[indice].GetComponent<Skill>().effectPower.ToString();
+                skillTime.GetComponent<Text>().text = "Time: " + gm.GetComponent<GameManager>().skillList[indice].GetComponent<Skill>().effectTime.ToString();
                 if (gm.GetComponent<GameManager>().skillList[indice].GetComponent<Skill>().purchased == true)
                 {
                     skillCost.GetComponent<Text>().text = "Comprado";

@@ -108,6 +108,7 @@ public class Player : MonoBehaviour {
         {
             skillIcon.GetComponent<Image>().sprite = skillEquiped.GetComponent<Skill>().icon;
             skillIcon.GetComponent<Image>().fillAmount = 1;
+
         }
 
         if (gm.GetComponent<GameManager>().gameState.Equals("play"))
@@ -221,7 +222,7 @@ public class Player : MonoBehaviour {
             {
                 switch (skillEquiped.GetComponent<Skill>().effect)
                 {
-                    case "Restaurar":
+                    case "Restore":
                         hp += (skillEquiped.GetComponent<Skill>().effectPower);
                         skillEquiped.GetComponent<Skill>().ready = false;
                         Instantiate(skillEquiped.GetComponent<Skill>().visualEffect, transform.position, transform.rotation);
@@ -229,7 +230,7 @@ public class Player : MonoBehaviour {
                         GetComponent<AudioSource>().PlayOneShot(skillEquiped.GetComponent<Skill>().soundEffect, musicControl.soundVolume);
                         break;
 
-                    case "Drenar":
+                    case "Drain":
                         skillEquiped.GetComponent<Skill>().ready = false;
                         skillEquiped.GetComponent<Skill>().active = true;
                         StartCoroutine(skillTime());
@@ -248,7 +249,7 @@ public class Player : MonoBehaviour {
                         skillActiveInfo.SetActive(true);
                         break;
 
-                    case "Escudo":
+                    case "Shield":
                         skillEquiped.GetComponent<Skill>().ready = false;
                         skillEquiped.GetComponent<Skill>().active = true;
                         Instantiate(skillEquiped.GetComponent<Skill>().visualEffect, transform.position, transform.rotation);
@@ -256,7 +257,7 @@ public class Player : MonoBehaviour {
                         GetComponent<AudioSource>().PlayOneShot(skillEquiped.GetComponent<Skill>().soundEffect, musicControl.soundVolume);
                         break;
 
-                    case "ArmadilhaDeFogo":
+                    case "Fire trap":
                         skillEquiped.GetComponent<Skill>().ready = false;
                         skillEquiped.GetComponent<Skill>().active = true;
                         StartCoroutine(skillTime());
@@ -264,7 +265,7 @@ public class Player : MonoBehaviour {
                         arrayMostUsedSkill[skillEquiped.GetComponent<Skill>().id]++;
                         break;
 
-                    case "OndaDeChoque":
+                    case "Shock Wave":
                         skillEquiped.GetComponent<Skill>().ready = false;
                         foreach(GameObject obj in GameObject.FindGameObjectsWithTag("Destructibles"))
                         {

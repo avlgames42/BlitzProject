@@ -389,7 +389,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Jogar
+  m_Text: JOGAR
 --- !u!222 &126833164
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -903,7 +903,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Controles
+  m_Text: CONTROLES
 --- !u!222 &343128104
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1754,7 +1754,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 1ea03fb4f7a99e2428d5e2f0df75923e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b83144d3195161f4f8863361281710d2, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -2038,7 +2038,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Opcoes
+  m_Text: OPCOES
 --- !u!222 &677397126
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3213,6 +3213,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 234a98aaa5e874f4885576f5a6a66a7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sumArray: 
   cdPlayer: 0
 --- !u!1 &1441732533
 GameObject:
@@ -3477,7 +3478,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Creditos
+  m_Text: CREDITOS
 --- !u!222 &1490420862
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4075,7 +4076,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Sobre
+  m_Text: SOBRE
 --- !u!222 &1763532411
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5207,7 +5208,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Sair
+  m_Text: SAIR
 --- !u!222 &2142206997
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -370,6 +370,26 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114322181361951992, guid: 50ac9f579359d154fbc9206f78ccc263,
+        type: 2}
+      propertyPath: m_Text
+      value: Power
+      objectReference: {fileID: 0}
+    - target: {fileID: 114691367744971152, guid: 50ac9f579359d154fbc9206f78ccc263,
+        type: 2}
+      propertyPath: m_Text
+      value: Time
+      objectReference: {fileID: 0}
+    - target: {fileID: 114477179501850546, guid: 50ac9f579359d154fbc9206f78ccc263,
+        type: 2}
+      propertyPath: m_Text
+      value: Equip
+      objectReference: {fileID: 0}
+    - target: {fileID: 114994212791737020, guid: 50ac9f579359d154fbc9206f78ccc263,
+        type: 2}
+      propertyPath: m_Text
+      value: Buy
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 50ac9f579359d154fbc9206f78ccc263, type: 2}
   m_IsPrefabAsset: 0
@@ -1763,6 +1783,56 @@ Prefab:
       propertyPath: m_AnchoredPosition.x
       value: 252.57031
       objectReference: {fileID: 0}
+    - target: {fileID: 114104406453102030, guid: 01fcd6ef502befa40a7c6ff679de2667,
+        type: 2}
+      propertyPath: m_Text
+      value: Restart
+      objectReference: {fileID: 0}
+    - target: {fileID: 114528260197703718, guid: 01fcd6ef502befa40a7c6ff679de2667,
+        type: 2}
+      propertyPath: m_Text
+      value: Restart
+      objectReference: {fileID: 0}
+    - target: {fileID: 114036649813920972, guid: 01fcd6ef502befa40a7c6ff679de2667,
+        type: 2}
+      propertyPath: m_Text
+      value: Back to Menu
+      objectReference: {fileID: 0}
+    - target: {fileID: 114905376678613498, guid: 01fcd6ef502befa40a7c6ff679de2667,
+        type: 2}
+      propertyPath: m_Text
+      value: Back to Menu
+      objectReference: {fileID: 0}
+    - target: {fileID: 114274848945664544, guid: 01fcd6ef502befa40a7c6ff679de2667,
+        type: 2}
+      propertyPath: m_Text
+      value: VICTORY
+      objectReference: {fileID: 0}
+    - target: {fileID: 114787222261213676, guid: 01fcd6ef502befa40a7c6ff679de2667,
+        type: 2}
+      propertyPath: m_Text
+      value: VICTORY
+      objectReference: {fileID: 0}
+    - target: {fileID: 114336316607040012, guid: 01fcd6ef502befa40a7c6ff679de2667,
+        type: 2}
+      propertyPath: m_Text
+      value: Restart
+      objectReference: {fileID: 0}
+    - target: {fileID: 114724938024568440, guid: 01fcd6ef502befa40a7c6ff679de2667,
+        type: 2}
+      propertyPath: m_Text
+      value: Restart
+      objectReference: {fileID: 0}
+    - target: {fileID: 114810286680703406, guid: 01fcd6ef502befa40a7c6ff679de2667,
+        type: 2}
+      propertyPath: m_Text
+      value: Back to Menu
+      objectReference: {fileID: 0}
+    - target: {fileID: 114612575116868364, guid: 01fcd6ef502befa40a7c6ff679de2667,
+        type: 2}
+      propertyPath: m_Text
+      value: Back to Menu
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 01fcd6ef502befa40a7c6ff679de2667, type: 2}
   m_IsPrefabAsset: 0
@@ -2897,9 +2967,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1123709932}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 232206392c8d20b499aff4b386288753, type: 3}
+  m_Script: {fileID: 11500000, guid: 882a26c3ccda19043968ef2d42739214, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cdPlayer: 0
+  sumArrayString: []
+  sumArray: 
 --- !u!1001 &1135726516
 Prefab:
   m_ObjectHideFlags: 0

@@ -86,7 +86,8 @@ public class ResearchControl : MonoBehaviour {
         {
             print("entrou no else");
             emailPanel.SetActive(false);
-            firstResearch.SetActive(true);
+            //firstResearch.SetActive(true); player info
+            finalResearch.SetActive(true);//comeca as perguntas
         }
     }
 

@@ -30,12 +30,12 @@ public class MySqlDb : MonoBehaviour
         GameObject research = GameObject.Find("Canvas");
         ResearchControl researchScript = research.GetComponent<ResearchControl>();
 
-        InsertPlayerInfo(researchScript.jogador);
+        InsertPlayerInfo(researchScript.jogador, researchScript.email);
    
     }
 
 
-    public void InsertPlayerInfo(string[] jogador)
+    public void InsertPlayerInfo(string[] jogador, string email)
     {
 
         int playGames;
@@ -65,6 +65,7 @@ public class MySqlDb : MonoBehaviour
         form.AddField("educationPost", jogador[3]);
         form.AddField("cityPost", jogador[4]);
         form.AddField("playGamesPost", playGames);
+        form.AddField("playerEmailPost", email);
 
         WWW www = new WWW(urlPost, form);
    

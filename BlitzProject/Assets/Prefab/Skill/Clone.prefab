@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 114809426500856450}
   m_Layer: 0
   m_Name: Clone
-  m_TagString: Untagged
+  m_TagString: Clone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -58,8 +58,8 @@ MonoBehaviour:
   effectTime: 4
   effectPower: 1
   purchased: 0
-  info: Projeta uma imagem que atrae e confunde os inimigos por um curto periodo de
-    tempo.
+  info: Project an image that attracts and confuses enemies for a short period of
+    time.
   ready: 0
   icon: {fileID: 21300000, guid: 298f3861eb76b9844ba8c84be3062c66, type: 3}
   hp: 0
